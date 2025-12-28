@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mauri_pay/feautres/main/presentation/pages/home/widgets/Solde_widgets.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -10,12 +11,15 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return SingleChildScrollView(
+      padding: EdgeInsets.all(10),
       child: Column(
         children: [
-          Text("Home")
+        SoldeWidgets(),
+        
         ],
       ),
+      
     );
   }
 }
