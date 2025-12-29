@@ -16,7 +16,7 @@ class _HomePageState extends State<HomePage> {
       child: Column(
         children: [
         SoldeWidgets(),
-        
+
         ],
       ),
       
