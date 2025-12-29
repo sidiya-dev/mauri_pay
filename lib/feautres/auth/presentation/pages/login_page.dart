@@ -27,7 +27,8 @@ class _LoginPageState extends State<LoginPage> {
             padding: const EdgeInsets.all(16.0),
             child: Column(
               children: [
-                Image.asset("assets/images/mauri_pay.png"),
+                Image.asset("assets/images/mauri_pay.png", height: 220),
+                SizedBox(height: 30),
                 AuthFiled(
                   controller: phoneController,
                   hintText: "Phone Number",
@@ -44,7 +45,7 @@ class _LoginPageState extends State<LoginPage> {
                     return null;
                   },
                 ),
-                SizedBox(height: 30),
+                SizedBox(height: 15),
                 AuthFiled(
                   controller: passwordController,
                   hintText: "Password",
@@ -61,16 +62,16 @@ class _LoginPageState extends State<LoginPage> {
                     return null;
                   },
                 ),
-                SizedBox(height: 30),
+                SizedBox(height: 15),
                 AuthBotton(
                   text: "Login",
                   onPressed: () {
-                    if(formKey.currentState!.validate()) {
+                    if (formKey.currentState!.validate()) {
                       context.go("/");
                     }
                   },
                 ),
-                SizedBox(height: 30),
+                SizedBox(height: 15),
                 GestureDetector(
                   onTap: () => context.push("/register"),
                   child: RichText(

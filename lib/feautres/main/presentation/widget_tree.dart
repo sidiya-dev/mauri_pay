@@ -24,24 +24,23 @@ class WidgetTree extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(          
           actions: [
-            IconButton(onPressed: () { 
-            },
-             icon: Icon(Icons.notifications_none_outlined),
-            ),
-            Spacer(flex:1),
-            IconButton(onPressed: () {
-            },
-             icon: Icon(Icons.menu_rounded)),
-            
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Icon(Icons.notifications),
+            )
           ], 
           
         ),
         body: BlocBuilder<MainCubit, int>(
           builder: (context, selectedIndex) {
-            return _pages.elementAt(selectedIndex);
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: _pages.elementAt(selectedIndex),
+            );
           },
         ),
         bottomNavigationBar: BottomNavigationBarWidget(),
+        drawer: Drawer(),
       ),
     );
   }

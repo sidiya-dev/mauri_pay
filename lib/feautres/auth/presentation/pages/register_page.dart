@@ -27,7 +27,8 @@ class _RegisterPageState extends State<RegisterPage> {
             padding: const EdgeInsets.all(16.0),
             child: Column(
               children: [
-                Image.asset("assets/images/mauri_pay.png"),
+                Image.asset("assets/images/mauri_pay.png", height: 220,),
+                SizedBox(height: 30),
                 AuthFiled(
                   controller: phoneController,
                   hintText: "Phone Number",
@@ -45,7 +46,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     return null;
                   },
                 ),
-                SizedBox(height: 30),
+                SizedBox(height: 15),
                 AuthFiled(
                   controller: passwordController,
                   hintText: "Password",
@@ -61,7 +62,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     return null;
                   },
                 ),
-                SizedBox(height: 30),
+                SizedBox(height: 15),
                 AuthFiled(
                   controller: confirmController,
                   hintText: "Confirm Password",
@@ -78,7 +79,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     return null;
                   },
                 ),
-                SizedBox(height: 30),
+                SizedBox(height: 15),
                 AuthBotton(
                   text: "Register",
                   onPressed: () {
@@ -87,7 +88,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     }
                   },
                 ),
-                SizedBox(height: 30),
+                SizedBox(height: 15),
                 GestureDetector(
                   onTap: () => context.go("/login"),
                   child: RichText(
@@ -102,7 +103,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                   ),
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: 15),
               ],
             ),
           ),
