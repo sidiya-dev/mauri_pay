@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mauri_pay/core/theme/app_colors.dart';
 import 'package:mauri_pay/feautres/main/presentation/cubit/main_cubit.dart';
 
 class BottomNavigationBarWidget extends StatelessWidget {
@@ -10,10 +11,10 @@ class BottomNavigationBarWidget extends StatelessWidget {
     return BlocBuilder<MainCubit, int>(
       builder: (context, selectedIndex) {
         return NavigationBar(
+          indicatorColor: AppColors.gradiant1,
           selectedIndex: selectedIndex,
           destinations: [
             NavigationDestination(icon: Icon(Icons.home), label: "Home"),
-            // NavigationDestination(icon: Icon(Icons.send), label: "Transfer"),
             NavigationDestination(
               icon: Icon(Icons.history),
               label: "Transactions",
