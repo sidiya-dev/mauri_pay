@@ -5,11 +5,10 @@ class TransferPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        children: [
-          Text("Transfer")
-        ],
+    return Scaffold(
+      appBar: AppBar(),
+      body: Center(
+        child: Text("Transfer"),
       ),
     );
   }
