@@ -13,7 +13,7 @@ class BottomNavigationBarWidget extends StatelessWidget {
           selectedIndex: selectedIndex,
           destinations: [
             NavigationDestination(icon: Icon(Icons.home), label: "Home"),
-            NavigationDestination(icon: Icon(Icons.send), label: "Transfer"),
+            // NavigationDestination(icon: Icon(Icons.send), label: "Transfer"),
             NavigationDestination(
               icon: Icon(Icons.history),
               label: "Transactions",
