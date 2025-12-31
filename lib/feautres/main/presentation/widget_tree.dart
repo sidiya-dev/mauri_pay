@@ -10,7 +10,6 @@ import 'package:mauri_pay/feautres/main/presentation/widgets/bottom_navigation_b
 List<Widget> _pages = [
   HomePage(),
   TransferPage(),
-  TransactionsPage(),
   ProfilePage(),
 ];
 
