@@ -1,0 +1,25 @@
+{
+  "@@locale": "ar",
+
+  "phone_placeholder": "رقم الهاتف",
+  "phone_error_invalid": "رقم الهاتف غير صالح",
+  "phone_error_empty": "الرجاء إدخال رقم الهاتف",
+  "password_placeholder": "كلمة المرور",
+  "password_error_invalid": "يجب أن تكون كلمة المرور 4 أرقام",
+  "password_error_empty": "الرجاء إدخال كلمة المرور",
+  "login_error_invalid": "رقم الهاتف أو كلمة المرور غير صالح",
+  "confirm_password_placeholder": "تأكيد كلمة المرور",
+  "dont_have_account": "ليس لديك حساب؟",
+  "already_have_account": "هل لديك حساب بالفعل؟",
+  "sign_in": "تسجيل الدخول",
+  "sign_up": "إنشاء حساب",
+  "sold": "الرصيد",
+  "request_money": "طلب الأموال",
+  "transfer": "تحويل",
+  "home": "الرئيسية",
+  "transactions": "المعاملات",
+  "profile": "الملف الشخصي",
+  "logout": "تسجيل الخروج",
+  "contacts": "جهات الاتصال",
+  "agencies": "الوكالات"
+}

@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:mauri_pay/core/theme/app_colors.dart';
 import 'package:mauri_pay/feautres/auth/presentation/widgets/auth_botton.dart';
 import 'package:mauri_pay/feautres/auth/presentation/widgets/auth_filed.dart';
+import 'package:mauri_pay/l10n/app_localizations.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -18,6 +19,7 @@ class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController confirmController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    final t = AppLocalizations.of(context);
     return Scaffold(
       appBar: AppBar(),
       body: SingleChildScrollView(
@@ -31,16 +33,16 @@ class _RegisterPageState extends State<RegisterPage> {
                 SizedBox(height: 30),
                 AuthFiled(
                   controller: phoneController,
-                  hintText: "Phone Number",
+                  hintText: t.password_placeholder,
                   prefixIcon: Icon(Icons.phone),
                   maxLength: 8,
                   isObscure: true,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Please enter a number';
+                      return t.phone_error_empty;
                     }
                     if (!RegExp(r'^[234]\d{7}$').hasMatch(value)) {
-                      return 'Invalid number';
+                      return t.phone_error_invalid;
                     }
 
                     return null;
@@ -49,15 +51,15 @@ class _RegisterPageState extends State<RegisterPage> {
                 SizedBox(height: 15),
                 AuthFiled(
                   controller: passwordController,
-                  hintText: "Password",
+                  hintText: t.password_placeholder,
                   prefixIcon: Icon(Icons.lock),
                   maxLength: 4,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Please enter a password';
+                      return t.password_error_empty;
                     }
                     if (!RegExp(r'^\d{4}$').hasMatch(value)) {
-                      return 'Password must be 4 digits';
+                      return t.password_error_invalid;
                     }
                     return null;
                   },
@@ -65,23 +67,23 @@ class _RegisterPageState extends State<RegisterPage> {
                 SizedBox(height: 15),
                 AuthFiled(
                   controller: confirmController,
-                  hintText: "Confirm Password",
+                  hintText: t.confirm_password_placeholder,
                   prefixIcon: Icon(Icons.lock),
                   isObscure: true,
                   maxLength: 4,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Please enter a password';
+                      return t.password_error_empty;
                     }
                     if (!RegExp(r'^\d{4}$').hasMatch(value)) {
-                      return 'Password must be 4 digits';
+                      return t.password_error_invalid;
                     }
                     return null;
                   },
                 ),
                 SizedBox(height: 15),
                 AuthBotton(
-                  text: "Register",
+                  text: t.sign_up,
                   onPressed: () {
                     if (formKey.currentState!.validate()) {
                       context.go("/");
@@ -93,10 +95,10 @@ class _RegisterPageState extends State<RegisterPage> {
                   onTap: () => context.go("/login"),
                   child: RichText(
                     text: TextSpan(
-                      text: "Already have an account? ",
+                      text: t.already_have_account + " ",
                       children: [
                         TextSpan(
-                          text: "Login",
+                          text: t.sign_in,
                           style: TextStyle(color: AppColors.accentOrange),
                         ),
                       ],
