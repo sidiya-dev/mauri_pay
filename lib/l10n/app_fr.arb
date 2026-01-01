@@ -1,0 +1,25 @@
+{
+  "@@locale": "fr",
+
+  "phone_placeholder": "Numéro de téléphone",
+  "phone_error_invalid": "Numéro de téléphone invalide",
+  "phone_error_empty": "Veuillez saisir un numéro de téléphone",
+  "password_placeholder": "Mot de passe",
+  "password_error_invalid": "Le mot de passe doit comporter 4 chiffres",
+  "password_error_empty": "Veuillez saisir un mot de passe",
+  "login_error_invalid": "Numéro de téléphone ou mot de passe invalide",
+  "confirm_password_placeholder": "Confirmer le mot de passe",
+  "dont_have_account": "Vous n'avez pas de compte ?",
+  "already_have_account": "Vous avez déjà un compte ?",
+  "sign_in": "Se connecter",
+  "sign_up": "S'inscrire",
+  "sold": "Solde",
+  "request_money": "Demander de l'argent",
+  "transfer": "Transférer",
+  "home": "Accueil",
+  "transactions": "Transactions",
+  "profile": "Profil",
+  "logout": "Déconnexion",
+  "contacts": "Contacts",
+  "agencies": "Agences"
+}
