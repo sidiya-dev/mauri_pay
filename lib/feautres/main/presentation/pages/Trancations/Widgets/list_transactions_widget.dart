@@ -34,7 +34,7 @@ class ListTransactionsWidget extends StatelessWidget {
                     ),          
                   ],
                 ),
-                SizedBox(width: 75,),
+                SizedBox(width: 60,),
                 Text(formatter.format(type==ListTransactionType.INCOME?544.42:-290.11),
                   style: TextStyle(
                     color: type==ListTransactionType.INCOME?Colors.green:Colors.redAccent,
