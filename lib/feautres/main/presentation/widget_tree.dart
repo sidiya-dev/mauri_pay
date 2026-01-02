@@ -5,6 +5,7 @@ import 'package:mauri_pay/feautres/main/presentation/pages/home/home_page.dart';
 import 'package:mauri_pay/feautres/main/presentation/pages/profile/profile_page.dart';
 import 'package:mauri_pay/feautres/main/presentation/pages/Trancations/transactions_page.dart';
 import 'package:mauri_pay/feautres/main/presentation/widgets/bottom_navigation_bar_widget.dart';
+import 'package:mauri_pay/feautres/main/presentation/widgets/drawer_widget.dart';
 
 List<Widget> _pages = [
   HomePage(),
@@ -38,7 +39,7 @@ class WidgetTree extends StatelessWidget {
           },
         ),
         bottomNavigationBar: BottomNavigationBarWidget(),
-        drawer: Drawer(),
+        drawer: DrawerWidget(),
       ),
     );
   }

@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:mauri_pay/core/theme/app_colors.dart';
 import 'package:mauri_pay/feautres/auth/presentation/widgets/auth_botton.dart';
 import 'package:mauri_pay/feautres/auth/presentation/widgets/auth_filed.dart';
+import 'package:mauri_pay/l10n/app_localizations.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -18,6 +19,7 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    final t = AppLocalizations.of(context);
     return Scaffold(
       appBar: AppBar(),
       body: SingleChildScrollView(
@@ -31,15 +33,15 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(height: 30),
                 AuthFiled(
                   controller: phoneController,
-                  hintText: "Phone Number",
+                  hintText: t.password_placeholder,
                   prefixIcon: Icon(Icons.phone),
                   maxLength: 8,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Please enter a number';
+                      return t.phone_error_empty;
                     }
                     if (!RegExp(r'^[234]\d{7}$').hasMatch(value)) {
-                      return 'Invalid number';
+                      return t.phone_error_invalid;
                     }
 
                     return null;
@@ -48,23 +50,23 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(height: 15),
                 AuthFiled(
                   controller: passwordController,
-                  hintText: "Password",
+                  hintText: t.password_error_empty,
                   prefixIcon: Icon(Icons.lock),
                   isObscure: true,
                   maxLength: 4,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Please enter a password';
+                      return t.password_error_empty;
                     }
                     if (!RegExp(r'^\d{4}$').hasMatch(value)) {
-                      return 'Password must be 4 digits';
+                      return t.password_error_invalid;
                     }
                     return null;
                   },
                 ),
                 SizedBox(height: 15),
                 AuthBotton(
-                  text: "Login",
+                  text: t.sign_in,
                   onPressed: () {
                     if (formKey.currentState!.validate()) {
                       context.go("/");
@@ -76,10 +78,10 @@ class _LoginPageState extends State<LoginPage> {
                   onTap: () => context.push("/register"),
                   child: RichText(
                     text: TextSpan(
-                      text: "Don't have an account? ",
+                      text: t.dont_have_account + " ",
                       children: [
                         TextSpan(
-                          text: "Sign Up",
+                          text: t.sign_up,
                           style: TextStyle(color: AppColors.accentOrange),
                         ),
                       ],

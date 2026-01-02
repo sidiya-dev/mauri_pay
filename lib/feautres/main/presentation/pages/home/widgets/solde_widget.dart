@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mauri_pay/core/theme/app_colors.dart';
+import 'package:mauri_pay/l10n/app_localizations.dart';
 
 class SoldeWidgets extends StatefulWidget {
   const SoldeWidgets({super.key});
@@ -13,6 +14,7 @@ class _SoldeWidgetsState extends State<SoldeWidgets> {
 
   @override
   Widget build(BuildContext context) {
+    final t = AppLocalizations.of(context);
     return Container(
       padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -49,13 +51,19 @@ class _SoldeWidgetsState extends State<SoldeWidgets> {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Text(
-                        "Solde",
+                        t.sold,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 18,
                         ),
                       ),
-                      isSwitched ? Text("3000 MRU", style: Theme.of(context).textTheme.headlineSmall,) : Text("*****"),
+                      isSwitched
+                          ? Text(
+                              "3000 MRU",
+                              textDirection: TextDirection.ltr,
+                              style: Theme.of(context).textTheme.headlineSmall,
+                            )
+                          : Text("*****"),
                     ],
                   ),
                 ],
@@ -64,7 +72,7 @@ class _SoldeWidgetsState extends State<SoldeWidgets> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("49 74 40 61"),
+                  Text("49 74 40 61", textDirection: TextDirection.ltr),
                   Text(
                     "Med AbdelWahab Idoumou",
                     style: TextStyle(
