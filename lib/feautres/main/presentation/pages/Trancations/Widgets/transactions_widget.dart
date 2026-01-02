@@ -13,7 +13,7 @@ class TransactionsWidget extends StatelessWidget {
     return Container(
       child:Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        spacing: 18,
+        spacing: 10,
         children: [
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,

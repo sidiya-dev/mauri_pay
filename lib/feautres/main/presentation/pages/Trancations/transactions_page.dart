@@ -10,6 +10,7 @@ class TransactionsPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
+            width: 165.0,
             padding:EdgeInsets.symmetric(horizontal: 20,vertical: 10),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
@@ -18,6 +19,7 @@ class TransactionsPage extends StatelessWidget {
             child:TransactionsWidget(type: TransactionType.OUTCOME),
           ),
           Container(
+            width: 165.0,
             padding:EdgeInsets.symmetric(horizontal: 20,vertical: 10),
              decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
