@@ -72,9 +72,9 @@ class _SoldeWidgetsState extends State<SoldeWidgets> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("49 74 40 61", textDirection: TextDirection.ltr),
+                  Text("36419515", textDirection: TextDirection.ltr),
                   Text(
-                    "Med AbdelWahab Idoumou",
+                    "Sidiya Sidibaba",
                     style: TextStyle(
                       fontSize: 16,
                       fontFamily: "Times ",

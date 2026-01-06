@@ -33,10 +33,10 @@ class _RegisterPageState extends State<RegisterPage> {
                 SizedBox(height: 30),
                 AuthFiled(
                   controller: phoneController,
-                  hintText: t.password_placeholder,
+                  hintText: t.phone_placeholder,
                   prefixIcon: Icon(Icons.phone),
                   maxLength: 8,
-                  isObscure: true,
+                  isObscure: false,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return t.phone_error_empty;

@@ -33,7 +33,7 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(height: 30),
                 AuthFiled(
                   controller: phoneController,
-                  hintText: t.password_placeholder,
+                  hintText: t.phone_placeholder,
                   prefixIcon: Icon(Icons.phone),
                   maxLength: 8,
                   validator: (value) {
@@ -43,7 +43,6 @@ class _LoginPageState extends State<LoginPage> {
                     if (!RegExp(r'^[234]\d{7}$').hasMatch(value)) {
                       return t.phone_error_invalid;
                     }
-
                     return null;
                   },
                 ),
