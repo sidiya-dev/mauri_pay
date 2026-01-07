@@ -1,12 +1,24 @@
 {
   "@@locale": "en",
 
+  "nni_placeholder": "Enter your NNI",
+  "nni_error_invalid": "Invalid NNI",
+  "nni_error_empty": "Please enter your NNI",
+
+  "username_placeholder": "Enter your username",
+  "username_error_invalid": "Invalid username",
+  "username_error_empty": "Please enter your username",
+
   "phone_placeholder": "Phone number",
   "phone_error_invalid": "Invalid phone number",
   "phone_error_empty": "Please enter a phone number",
+
   "password_placeholder": "Password",
   "password_error_invalid": "Password must be 4 digits",
   "password_error_empty": "Please enter a password",
+  "password_mismatch_error": "Passwords do not match",
+  "password_unique_error": "Password must be 4 unique digits",
+  
   "login_error_invalid": "Invalid phone number or password",
   "confirm_password_placeholder": "Confirm password",
   "dont_have_account": "Don't have an account?",

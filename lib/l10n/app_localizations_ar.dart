@@ -9,6 +9,24 @@ class AppLocalizationsAr extends AppLocalizations {
   AppLocalizationsAr([String locale = 'ar']) : super(locale);
 
   @override
+  String get nni_placeholder => 'أدخل رقم الهوية الوطنية';
+
+  @override
+  String get nni_error_invalid => 'رقم الهوية غير صالح';
+
+  @override
+  String get nni_error_empty => 'الرجاء إدخال رقم الهوية';
+
+  @override
+  String get username_placeholder => 'أدخل اسم المستخدم';
+
+  @override
+  String get username_error_invalid => 'اسم المستخدم غير صالح';
+
+  @override
+  String get username_error_empty => 'الرجاء إدخال اسم المستخدم';
+
+  @override
   String get phone_placeholder => 'رقم الهاتف';
 
   @override
@@ -25,6 +43,13 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get password_error_empty => 'الرجاء إدخال كلمة المرور';
+
+  @override
+  String get password_mismatch_error => 'كلمات المرور غير متطابقة';
+
+  @override
+  String get password_unique_error =>
+      'يجب أن تحتوي كلمة المرور على 4 أرقام مختلفة';
 
   @override
   String get login_error_invalid => 'رقم الهاتف أو كلمة المرور غير صالح';

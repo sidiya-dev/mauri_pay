@@ -14,6 +14,8 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   final formKey = GlobalKey<FormState>();
+  final TextEditingController nniController = TextEditingController();
+  final TextEditingController usernameController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmController = TextEditingController();
@@ -29,14 +31,50 @@ class _RegisterPageState extends State<RegisterPage> {
             padding: const EdgeInsets.all(16.0),
             child: Column(
               children: [
-                Image.asset("assets/images/mauri_pay.png", height: 220,),
+                Image.asset("assets/images/mauri_pay.png", height: 220),
                 SizedBox(height: 30),
+                AuthFiled(
+                  controller: nniController,
+                  hintText: t.nni_placeholder,
+                  prefixIcon: Icon(Icons.badge),
+                  isObscure: false,
+                  textInputType: TextInputType.number,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return t.nni_error_empty;
+                    }
+                    if (!RegExp(r'^[234]\d{7}$').hasMatch(value)) {
+                      return t.nni_error_invalid;
+                    }
+
+                    return null;
+                  },
+                ),
+                SizedBox(height: 15),
+                AuthFiled(
+                  controller: usernameController,
+                  hintText: t.username_placeholder,
+                  prefixIcon: Icon(Icons.person),
+                  isObscure: false,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return t.username_error_empty;
+                    }
+                    if (!RegExp(r'^[234]\d{7}$').hasMatch(value)) {
+                      return t.username_error_invalid;
+                    }
+
+                    return null;
+                  },
+                ),
+                SizedBox(height: 15),
                 AuthFiled(
                   controller: phoneController,
                   hintText: t.phone_placeholder,
                   prefixIcon: Icon(Icons.phone),
                   maxLength: 8,
                   isObscure: false,
+                  textInputType: TextInputType.number,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return t.phone_error_empty;
@@ -54,12 +92,16 @@ class _RegisterPageState extends State<RegisterPage> {
                   hintText: t.password_placeholder,
                   prefixIcon: Icon(Icons.lock),
                   maxLength: 4,
+                  textInputType: TextInputType.number,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return t.password_error_empty;
                     }
                     if (!RegExp(r'^\d{4}$').hasMatch(value)) {
                       return t.password_error_invalid;
+                    }
+                    if (!RegExp(r'^(?!.*(\d).*\1)\d{4}$').hasMatch(value)) {
+                      return t.password_unique_error;
                     }
                     return null;
                   },
@@ -71,12 +113,16 @@ class _RegisterPageState extends State<RegisterPage> {
                   prefixIcon: Icon(Icons.lock),
                   isObscure: true,
                   maxLength: 4,
+                  textInputType: TextInputType.number,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return t.password_error_empty;
                     }
                     if (!RegExp(r'^\d{4}$').hasMatch(value)) {
                       return t.password_error_invalid;
+                    }
+                    if (value != passwordController.text) {
+                      return t.password_mismatch_error;
                     }
                     return null;
                   },

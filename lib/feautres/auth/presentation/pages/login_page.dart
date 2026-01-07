@@ -36,6 +36,7 @@ class _LoginPageState extends State<LoginPage> {
                   hintText: t.phone_placeholder,
                   prefixIcon: Icon(Icons.phone),
                   maxLength: 8,
+                  textInputType: TextInputType.number,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return t.phone_error_empty;
@@ -53,6 +54,7 @@ class _LoginPageState extends State<LoginPage> {
                   prefixIcon: Icon(Icons.lock),
                   isObscure: true,
                   maxLength: 4,
+                  textInputType: TextInputType.number,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return t.password_error_empty;

@@ -100,6 +100,42 @@ abstract class AppLocalizations {
     Locale('ar'),
   ];
 
+  /// No description provided for @nni_placeholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your NNI'**
+  String get nni_placeholder;
+
+  /// No description provided for @nni_error_invalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid NNI'**
+  String get nni_error_invalid;
+
+  /// No description provided for @nni_error_empty.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your NNI'**
+  String get nni_error_empty;
+
+  /// No description provided for @username_placeholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your username'**
+  String get username_placeholder;
+
+  /// No description provided for @username_error_invalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid username'**
+  String get username_error_invalid;
+
+  /// No description provided for @username_error_empty.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your username'**
+  String get username_error_empty;
+
   /// No description provided for @phone_placeholder.
   ///
   /// In en, this message translates to:
@@ -135,6 +171,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Please enter a password'**
   String get password_error_empty;
+
+  /// No description provided for @password_mismatch_error.
+  ///
+  /// In en, this message translates to:
+  /// **'Passwords do not match'**
+  String get password_mismatch_error;
+
+  /// No description provided for @password_unique_error.
+  ///
+  /// In en, this message translates to:
+  /// **'Password must be 4 unique digits'**
+  String get password_unique_error;
 
   /// No description provided for @login_error_invalid.
   ///

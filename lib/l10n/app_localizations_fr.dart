@@ -9,6 +9,24 @@ class AppLocalizationsFr extends AppLocalizations {
   AppLocalizationsFr([String locale = 'fr']) : super(locale);
 
   @override
+  String get nni_placeholder => 'Entrez votre NNI';
+
+  @override
+  String get nni_error_invalid => 'NNI invalide';
+
+  @override
+  String get nni_error_empty => 'Veuillez entrer votre NNI';
+
+  @override
+  String get username_placeholder => 'Entrez votre nom d\'utilisateur';
+
+  @override
+  String get username_error_invalid => 'Nom d\'utilisateur invalide';
+
+  @override
+  String get username_error_empty => 'Veuillez entrer votre nom d\'utilisateur';
+
+  @override
   String get phone_placeholder => 'Numéro de téléphone';
 
   @override
@@ -26,6 +44,14 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get password_error_empty => 'Veuillez saisir un mot de passe';
+
+  @override
+  String get password_mismatch_error =>
+      'Les mots de passe ne correspondent pas';
+
+  @override
+  String get password_unique_error =>
+      'Le mot de passe doit comporter 4 chiffres uniques';
 
   @override
   String get login_error_invalid =>
