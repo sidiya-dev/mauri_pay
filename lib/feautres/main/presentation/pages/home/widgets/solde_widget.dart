@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mauri_pay/core/theme/app_colors.dart';
+import 'package:mauri_pay/core/utils/show_snackbar.dart';
 import 'package:mauri_pay/feautres/auth/presentation/bloc/auth_bloc.dart';
+import 'package:mauri_pay/feautres/main/presentation/bloc/main_bloc.dart';
 import 'package:mauri_pay/l10n/app_localizations.dart';
 
 class SoldeWidgets extends StatefulWidget {
@@ -40,6 +42,9 @@ class _SoldeWidgetsState extends State<SoldeWidgets> {
                       setState(() {
                         isSwitched = value;
                       });
+                      if (value) {
+                        context.read<MainBloc>().add(GetBalanceEvent());
+                      }
                     },
                   ),
                 ],
@@ -60,12 +65,30 @@ class _SoldeWidgetsState extends State<SoldeWidgets> {
                         ),
                       ),
                       isSwitched
-                          ? Text(
-                              "3000 MRU",
-                              textDirection: TextDirection.ltr,
-                              style: Theme.of(context).textTheme.headlineSmall,
+                          ? BlocBuilder<MainBloc, MainState>(
+                              builder: (context, state) {
+                                if (state is MainLoading) {
+                                  return const CircularProgressIndicator();
+                                } else if (state is MainError) {
+                                  WidgetsBinding.instance.addPostFrameCallback((
+                                    _,
+                                  ) {
+                                    showSnackBar(context, state.message);
+                                  });
+                                  return const Text("Error");
+                                } else if (state is MainSuccess) {
+                                  return Text(
+                                    "${state.balance} MRU",
+                                    textDirection: TextDirection.ltr,
+                                    style: Theme.of(
+                                      context,
+                                    ).textTheme.headlineSmall,
+                                  );
+                                }
+                                return const SizedBox.shrink(); // fallback
+                              },
                             )
-                          : Text("*****"),
+                          : const Text("*****"),
                     ],
                   ),
                 ],
