@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mauri_pay/core/theme/app_colors.dart';
+import 'package:mauri_pay/feautres/auth/presentation/bloc/auth_bloc.dart';
 import 'package:mauri_pay/l10n/app_localizations.dart';
 
 class SoldeWidgets extends StatefulWidget {
@@ -69,20 +71,32 @@ class _SoldeWidgetsState extends State<SoldeWidgets> {
                 ],
               ),
               SizedBox(height: 15),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text("36419515", textDirection: TextDirection.ltr),
-                  Text(
-                    "Sidiya Sidibaba",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontFamily: "Times ",
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ],
+              BlocBuilder<AuthBloc, AuthState>(
+                builder: (context, state) {
+                  if (state is Success) {
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          state.user.phone.toString(),
+                          textDirection: TextDirection.ltr,
+                        ),
+                        Text(
+                          "${state.user.firstName} ${state.user.lastName}",
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontFamily: "Times",
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ],
+                    );
+                  }
+                  // fallback UI
+                  return const SizedBox.shrink();
+                },
               ),
+
               SizedBox(height: 15),
             ],
           ),

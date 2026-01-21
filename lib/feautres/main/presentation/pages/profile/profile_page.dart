@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mauri_pay/core/theme/app_colors.dart';
+import 'package:mauri_pay/feautres/auth/presentation/bloc/auth_bloc.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -26,73 +28,93 @@ class ProfilePage extends StatelessWidget {
                 ),
               ],
             ),
-            child: Column(
-              children: [
-                CircleAvatar(
-                  radius: 50,
-                  backgroundColor: const Color.fromARGB(255, 27, 99, 134),
-                  child: const Text(
-                    "SS",
-                    style: TextStyle(
-                      fontSize: 42,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 16),
-                const Text(
-                  "Sidiya Sidibaba",
-                  style: TextStyle(fontSize: 26, fontWeight: FontWeight.w600),
-                ),
-                const SizedBox(height: 12),
-                Wrap(
-                  spacing: 12,
-                  runSpacing: 12,
-                  alignment: WrapAlignment.center,
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 12,
-                        vertical: 6,
+            child: BlocBuilder<AuthBloc, AuthState>(
+              builder: (context, state) {
+                if (state is Success) {
+                  return Column(
+                    children: [
+                      CircleAvatar(
+                        radius: 50,
+                        backgroundColor: const Color.fromARGB(255, 27, 99, 134),
+                        child: Text(
+                          state.user.firstName[0] + state.user.lastName[0],
+                          style: TextStyle(
+                            fontSize: 42,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        border: Border.all(color: AppColors.grayColor),
+                      const SizedBox(height: 16),
+                      Text(
+                        state.user.firstName + " " + state.user.lastName,
+                        style: TextStyle(
+                          fontSize: 26,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: const [
-                          Icon(Icons.call, size: 18),
-                          SizedBox(width: 6),
-                          Text("36419515", style: TextStyle(fontSize: 14)),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 12,
-                        vertical: 6,
-                      ),
-                      decoration: BoxDecoration(
-                        color: const Color.fromARGB(255, 68, 125, 2),
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: const [
-                          Icon(Icons.verified, color: Colors.white, size: 18),
-                          SizedBox(width: 6),
-                          Text(
-                            "Compte Vérifié",
-                            style: TextStyle(fontSize: 14, color: Colors.white),
+                      const SizedBox(height: 12),
+                      Wrap(
+                        spacing: 12,
+                        runSpacing: 12,
+                        alignment: WrapAlignment.center,
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 12,
+                              vertical: 6,
+                            ),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              border: Border.all(color: AppColors.grayColor),
+                            ),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                const Icon(Icons.call, size: 18),
+                                const SizedBox(width: 6),
+                                Text(
+                                  state.user.phone ,
+                                  style: TextStyle(fontSize: 14),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 12,
+                              vertical: 6,
+                            ),
+                            decoration: BoxDecoration(
+                              color: const Color.fromARGB(255, 68, 125, 2),
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: const [
+                                Icon(
+                                  Icons.verified,
+                                  color: Colors.white,
+                                  size: 18,
+                                ),
+                                SizedBox(width: 6),
+                                Text(
+                                  "Compte Vérifié",
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ],
                       ),
-                    ),
-                  ],
-                ),
-              ],
+                    ],
+                  );
+                }
+                return SizedBox.shrink();
+              },
             ),
           ),
           const SizedBox(height: 32),
@@ -110,7 +132,7 @@ class ProfilePage extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: 16),
                   decoration: BoxDecoration(
                     border: Border.all(width: 1, color: AppColors.grayColor),
-                    borderRadius: BorderRadius.circular(20)
+                    borderRadius: BorderRadius.circular(20),
                   ),
                   child: Column(
                     children: [
@@ -136,7 +158,7 @@ class ProfilePage extends StatelessWidget {
                         title: "Déconnexion",
                         textColor: Colors.red,
                         iconColor: Colors.red,
-                        noDivider: true
+                        noDivider: true,
                       ),
                     ],
                   ),

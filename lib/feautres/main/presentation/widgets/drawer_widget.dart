@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mauri_pay/core/theme/app_colors.dart';
 import 'package:mauri_pay/cubit/cubit/locale_cubit.dart';
+import 'package:mauri_pay/feautres/auth/presentation/bloc/auth_bloc.dart';
 import 'package:mauri_pay/l10n/app_localizations.dart';
 
 class _Lang {
@@ -35,43 +36,56 @@ class DrawerWidget extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: const Color.fromARGB(255, 17, 17, 22),
                 ),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    CircleAvatar(
-                      radius: 30,
-                      backgroundImage: AssetImage("assets/images/user.png"),
-                    ),
-                    SizedBox(width: 12),
-                    Expanded(
-                      child: Column(
+                child: BlocBuilder<AuthBloc, AuthState>(
+                  builder: (context, state) {
+                    if (state is Success) {
+                      return Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            "Sidiya Sidibaba",
-                            style: Theme.of(context).textTheme.titleMedium,
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                          const SizedBox(height: 8),
-                          TextButton(
-                            onPressed: () {
-                              context.go("/login");
-                            },
-                            style: TextButton.styleFrom(
-                              padding: EdgeInsets.zero,
-                              minimumSize: const Size(50, 30),
+                          CircleAvatar(
+                            radius: 30,
+                            backgroundImage: AssetImage(
+                              "assets/images/user.png",
                             ),
-                            child: Text(
-                              t.logout,
-                              style: Theme.of(context).textTheme.bodyLarge
-                                  ?.copyWith(color: AppColors.errorColor),
+                          ),
+                          SizedBox(width: 12),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  state.user.firstName +
+                                      " " +
+                                      state.user.lastName,
+                                  style: Theme.of(
+                                    context,
+                                  ).textTheme.titleMedium,
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                                const SizedBox(height: 8),
+                                TextButton(
+                                  onPressed: () {
+                                    context.go("/login");
+                                  },
+                                  style: TextButton.styleFrom(
+                                    padding: EdgeInsets.zero,
+                                    minimumSize: const Size(50, 30),
+                                  ),
+                                  child: Text(
+                                    t.logout,
+                                    style: Theme.of(context).textTheme.bodyLarge
+                                        ?.copyWith(color: AppColors.errorColor),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ],
-                      ),
-                    ),
-                  ],
+                      );
+                    }
+                    return SizedBox.shrink();
+                  },
                 ),
               ),
               ListTile(
