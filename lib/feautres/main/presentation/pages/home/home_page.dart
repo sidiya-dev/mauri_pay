@@ -30,7 +30,7 @@ class _HomePageState extends State<HomePage> {
               OptionCardWidget(
                 icon: Icons.repeat_rounded,
                 text: t.transfer,
-                onTap: () => context.push("/Transfer"),
+                onTap: () => context.push("/transfer"),
               ),
               OptionCardWidget(
                 icon: Icons.monetization_on_outlined,
