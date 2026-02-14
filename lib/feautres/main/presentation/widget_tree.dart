@@ -19,15 +19,14 @@ class WidgetTree extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => MainCubit()),
-        BlocProvider(
+        BlocProvider(create: (_) => MainCubit()),
+        BlocProvider<MainBloc>(
           create: (context) {
             final authState = context.read<AuthBloc>().state;
-            if (authState is Success) {
-              return sl<MainBloc>(param1: authState.user.userId)
-                ..add(GetBalanceEvent());
-            }
-            return sl<MainBloc>(param1: 0);
+
+            final userId = (authState is Success) ? authState.user.userId : 0;
+
+            return sl<MainBloc>(param1: userId)..add(GetBalanceEvent());
           },
         ),
       ],

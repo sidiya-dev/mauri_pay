@@ -20,7 +20,7 @@ class MakeTransactionModel extends MakeTransactionEntity {
   factory MakeTransactionModel.fromJson(Map<String, dynamic> json) {
     return MakeTransactionModel(
       amount: (json['amount'] as num).toDouble(),
-      senderId: json['sender_id'] as int,
+      senderId: json['sender_id'] as String,
       receiverPhone: json['receiver_phone'] as String,
       transactionTypeId: json['transaction_type_id'] as int,
     );

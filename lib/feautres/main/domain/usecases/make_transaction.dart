@@ -1,17 +1,16 @@
 import 'package:fpdart/src/either.dart';
 import 'package:mauri_pay/core/error/failure.dart';
 import 'package:mauri_pay/core/usecase/usecase.dart';
-import 'package:mauri_pay/feautres/main/domain/entities/make_transaction_entity.dart';
 import 'package:mauri_pay/feautres/main/domain/repositories/make_transaction_repository.dart';
 
 class MakeTransaction
-    implements Usecase<MakeTransactionEntity, MakeTransactionType> {
+    implements Usecase<bool, MakeTransactionType> {
   final MakeTransactionRepository makeTransactionRepository;
 
   MakeTransaction({required this.makeTransactionRepository});
 
   @override
-  Future<Either<Failure, MakeTransactionEntity>> call(
+  Future<Either<Failure, bool>> call(
     MakeTransactionType params,
   ) async {
     return await makeTransactionRepository.makeTransaction(params);
@@ -20,7 +19,7 @@ class MakeTransaction
 
 class MakeTransactionType {
   final double amount;
-  final int senderId;
+  final String senderId;
   final String receiverPhone;
   final int transactionTypeId;
 

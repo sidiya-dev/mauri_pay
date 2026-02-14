@@ -83,13 +83,13 @@ class _LoginPageState extends State<LoginPage> {
                       hintText: t.password_placeholder,
                       prefixIcon: const Icon(Icons.lock),
                       isObscure: true,
-                      maxLength: 4,
+                      maxLength: 6,
                       textInputType: TextInputType.number,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return t.password_error_empty;
                         }
-                        if (!RegExp(r'^\d{4}$').hasMatch(value)) {
+                        if (!RegExp(r'^\d{6}$').hasMatch(value)) {
                           return t.password_error_invalid;
                         }
                         return null;

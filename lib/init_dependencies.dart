@@ -10,10 +10,17 @@ import 'package:mauri_pay/feautres/auth/domain/usecases/register_usecase.dart';
 import 'package:mauri_pay/feautres/auth/presentation/bloc/auth_bloc.dart';
 import 'package:mauri_pay/feautres/main/data/datasources/main_remote_datasource.dart';
 import 'package:mauri_pay/feautres/main/data/datasources/main_remote_datasource_impl.dart';
+import 'package:mauri_pay/feautres/main/data/datasources/make_transaction_datasource.dart';
+import 'package:mauri_pay/feautres/main/data/datasources/make_transaction_datasource_impl.dart';
 import 'package:mauri_pay/feautres/main/data/repositories/main_repository_impl.dart';
+import 'package:mauri_pay/feautres/main/data/repositories/make_transaction_repository_impl.dart';
 import 'package:mauri_pay/feautres/main/domain/repositories/main_repository.dart';
+import 'package:mauri_pay/feautres/main/domain/repositories/make_transaction_repository.dart';
 import 'package:mauri_pay/feautres/main/domain/usecases/get_balanace.dart';
+import 'package:mauri_pay/feautres/main/domain/usecases/make_transaction.dart';
 import 'package:mauri_pay/feautres/main/presentation/bloc/main_bloc.dart';
+import 'package:mauri_pay/feautres/main/presentation/bloc/make_transaction_bloc.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 final sl = GetIt.instance;
 
@@ -21,24 +28,28 @@ Future<void> initDependencies() async {
   await initGlobal();
   await _initAuth();
   await _initMain();
+  await _initMakeTransaction();
 }
 
 Future<void> initGlobal() async {
-  sl.registerLazySingleton<Dio>(
-    () => Dio(
-      BaseOptions(
-        baseUrl: dotenv.get("API_URL"),
-        headers: {'Content-Type': 'application/json'},
-        responseType: ResponseType.json,
+  final supabase = Supabase.instance.client;
+  sl
+    ..registerLazySingleton<Dio>(
+      () => Dio(
+        BaseOptions(
+          baseUrl: dotenv.get("API_URL"),
+          headers: {'Content-Type': 'application/json'},
+          responseType: ResponseType.json,
+        ),
       ),
-    ),
-  );
+    )
+    ..registerLazySingleton<SupabaseClient>(() => supabase);
 }
 
 Future<void> _initAuth() async {
   sl
     ..registerLazySingleton<AuthRemoteDatasource>(
-      () => AuthRemoteDatasourceImpl(dio: sl<Dio>()),
+      () => AuthRemoteDatasourceImpl(supabase: sl<SupabaseClient>()),
     )
     ..registerLazySingleton<AuthRepository>(
       () =>
@@ -61,7 +72,7 @@ Future<void> _initAuth() async {
 Future<void> _initMain() async {
   sl
     ..registerLazySingleton<MainRemoteDatasource>(
-      () => MainRemoteDatasourceImpl(dio: sl<Dio>()),
+      () => MainRemoteDatasourceImpl(supabase: sl<SupabaseClient>()),
     )
     ..registerLazySingleton<MainRepository>(
       () =>
@@ -70,8 +81,31 @@ Future<void> _initMain() async {
     ..registerLazySingleton<GetBalanaceUsecase>(
       () => GetBalanaceUsecase(mainRepository: sl<MainRepository>()),
     )
-    ..registerFactoryParam<MainBloc, int, void>(
+    ..registerFactoryParam<MainBloc, String, void>(
       (userId, _) =>
           MainBloc(getBalanace: sl<GetBalanaceUsecase>(), userId: userId),
+    );
+}
+
+Future<void> _initMakeTransaction() async {
+  sl
+    ..registerLazySingleton<MakeTransactionDatasource>(
+      () => MakeTransactionDatasourceImpl(dio: sl<Dio>()),
+    )
+    ..registerLazySingleton<MakeTransactionRepository>(
+      () => MakeTransactionRepositoryImpl(
+        makeTransactionDatasource: sl<MakeTransactionDatasource>(),
+      ),
+    )
+    ..registerLazySingleton<MakeTransaction>(
+      () => MakeTransaction(
+        makeTransactionRepository: sl<MakeTransactionRepository>(),
+      ),
+    )
+    ..registerFactoryParam<MakeTransactionBloc, int, void>(
+      (userId, _) => MakeTransactionBloc(
+        makeTransactionUseCase: sl<MakeTransaction>(),
+        userId: userId,
+      ),
     );
 }

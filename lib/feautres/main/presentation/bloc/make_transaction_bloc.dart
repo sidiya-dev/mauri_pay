@@ -9,8 +9,9 @@ part 'make_transaction_state.dart';
 class MakeTransactionBloc
     extends Bloc<MakeTransactionEvent, MakeTransactionState> {
   final MakeTransaction makeTransactionUseCase;
+  final int userId;
 
-  MakeTransactionBloc({required this.makeTransactionUseCase})
+  MakeTransactionBloc({required this.makeTransactionUseCase, required this.userId})
     : super(MakeTransactionInitial()) {
     on<MakeTransactionRequested>(_onMakeTransactionRequested);
 
@@ -36,7 +37,7 @@ class MakeTransactionBloc
       );
       result.fold(
         (l) => emit(MakeTransactionFailure(l.message)),
-        (r) => emit(MakeTransactionSuccess(r)),
+        (r) => emit(MakeTransactionSuccess()),
       );
     } catch (e) {
       emit(MakeTransactionFailure(e.toString()));

@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:mauri_pay/core/error/exceptions.dart';
 import 'package:mauri_pay/feautres/main/data/datasources/make_transaction_datasource.dart';
-import 'package:mauri_pay/feautres/main/data/models/make_transaction_model.dart';
 import 'package:mauri_pay/feautres/main/domain/usecases/make_transaction.dart';
 
 class MakeTransactionDatasourceImpl implements MakeTransactionDatasource {
@@ -10,31 +9,33 @@ class MakeTransactionDatasourceImpl implements MakeTransactionDatasource {
   MakeTransactionDatasourceImpl({required this.dio});
 
   @override
-  Future<MakeTransactionModel> makeTransaction(
-    MakeTransactionType params,
-  ) async {
+  Future<bool> makeTransaction(MakeTransactionType params) async {
+    print('Sending transaction:');
+    print('SenderId: ${params.senderId}');
+    print('ReceiverPhone: ${params.receiverPhone}');
+    print('Amount: ${params.amount}');
+    print('TransactionTypeId: ${params.transactionTypeId}');
+
     try {
-      final response = await dio.post(
+      await dio.post(
         '/transactions',
         data: {
           'sender_id': params.senderId,
-          'receiver_phone': params,
+          'receiver_phone': params.receiverPhone,
           'amount': params.amount,
           'transaction_type_id': params.transactionTypeId,
         },
       );
-
-      return MakeTransactionModel.fromJson(response.data);
+      return true;
     } on DioException catch (e) {
-      if (e.response != null) {
-        final statusCode = e.response!.statusCode;
-        final message = e.response!.data['error'];
+      print('DioException caught: ${e.response?.data}');
+      print('Dio status code: ${e.response?.statusCode}');
 
-        if (statusCode == 400 || statusCode == 404) {
-          throw ServerException(message);
-        }
-      }
+      final serverMessage = e.response?.data?['error'] ?? e.message;
 
+      throw ServerException(serverMessage);
+    } catch (e) {
+      print('Unknown exception: $e');
       throw ServerException('Transaction failed, please try again');
     }
   }

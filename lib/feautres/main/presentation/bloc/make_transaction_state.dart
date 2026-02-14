@@ -7,11 +7,7 @@ final class MakeTransactionInitial extends MakeTransactionState {}
 
 final class MakeTransactionLoading extends MakeTransactionState {}
 
-final class MakeTransactionSuccess extends MakeTransactionState {
-  final MakeTransactionEntity makeTransactionEntity;
-
-  MakeTransactionSuccess(this.makeTransactionEntity);
-}
+final class MakeTransactionSuccess extends MakeTransactionState {}
 
 final class MakeTransactionFailure extends MakeTransactionState {
   final String error;

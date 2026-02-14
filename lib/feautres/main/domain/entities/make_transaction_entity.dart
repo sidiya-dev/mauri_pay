@@ -1,6 +1,6 @@
 class MakeTransactionEntity {
   final double amount;
-  final int senderId;
+  final String senderId;
   final String receiverPhone;
   final int transactionTypeId;
 

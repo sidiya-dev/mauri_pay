@@ -85,10 +85,13 @@ class _SoldeWidgetsState extends State<SoldeWidgets> {
                                     ).textTheme.headlineSmall,
                                   );
                                 }
-                                return const SizedBox.shrink(); // fallback
+                                return const SizedBox.shrink();
                               },
                             )
-                          : const Text("*****"),
+                          : Text(
+                              "*****",
+                              style: Theme.of(context).textTheme.headlineSmall,
+                            ),
                     ],
                   ),
                 ],
@@ -115,7 +118,6 @@ class _SoldeWidgetsState extends State<SoldeWidgets> {
                       ],
                     );
                   }
-                  // fallback UI
                   return const SizedBox.shrink();
                 },
               ),

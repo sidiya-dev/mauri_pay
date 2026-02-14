@@ -12,10 +12,16 @@ import 'package:mauri_pay/feautres/main/presentation/pages/transfer/pages/transf
 import 'package:mauri_pay/feautres/main/presentation/widget_tree.dart';
 import 'package:mauri_pay/init_dependencies.dart';
 import 'package:mauri_pay/l10n/app_localizations.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: ".env");
+  await Supabase.initialize(
+    url: dotenv.get("SUPABASE_URL"),
+    anonKey: dotenv.get("SUPABASE_ANON_KEY"),
+  );
+
   await initDependencies();
   runApp(const MyApp());
 }

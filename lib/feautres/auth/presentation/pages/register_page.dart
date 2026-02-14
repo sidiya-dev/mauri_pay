@@ -71,9 +71,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         if (value == null || value.isEmpty) {
                           return t.nni_error_empty;
                         }
-                        if (!RegExp(r'^[234]\d{7}$').hasMatch(value)) {
-                          return t.nni_error_invalid;
-                        }
+                      
 
                         return null;
                       },
@@ -102,16 +100,16 @@ class _RegisterPageState extends State<RegisterPage> {
                       controller: passwordController,
                       hintText: t.password_placeholder,
                       prefixIcon: Icon(Icons.lock),
-                      maxLength: 4,
+                      maxLength: 6,
                       textInputType: TextInputType.number,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return t.password_error_empty;
                         }
-                        if (!RegExp(r'^\d{4}$').hasMatch(value)) {
+                        if (!RegExp(r'^\d{6}$').hasMatch(value)) {
                           return t.password_error_invalid;
                         }
-                        if (!RegExp(r'^(?!.*(\d).*\1)\d{4}$').hasMatch(value)) {
+                        if (!RegExp(r'^(?!.*(\d).*\1)\d{6}$').hasMatch(value)) {
                           return t.password_unique_error;
                         }
                         return null;
@@ -123,13 +121,13 @@ class _RegisterPageState extends State<RegisterPage> {
                       hintText: t.confirm_password_placeholder,
                       prefixIcon: Icon(Icons.lock),
                       isObscure: true,
-                      maxLength: 4,
+                      maxLength: 6,
                       textInputType: TextInputType.number,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return t.password_error_empty;
                         }
-                        if (!RegExp(r'^\d{4}$').hasMatch(value)) {
+                        if (!RegExp(r'^\d{6}$').hasMatch(value)) {
                           return t.password_error_invalid;
                         }
                         if (value != passwordController.text) {

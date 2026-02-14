@@ -7,9 +7,9 @@ part 'main_state.dart';
 
 class MainBloc extends Bloc<MainEvent, MainState> {
   final GetBalanaceUsecase _getBalanace;
-  final int _userId;
+  final String _userId;
 
-  MainBloc({required GetBalanaceUsecase getBalanace, required int userId})
+  MainBloc({required GetBalanaceUsecase getBalanace, required String userId})
     : _getBalanace = getBalanace,
       _userId = userId,
       super(MainInitial()) {

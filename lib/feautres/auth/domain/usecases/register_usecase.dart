@@ -27,6 +27,9 @@ class RegisterParams {
   });
 
   Map<String, dynamic> toJson() {
-    return {"nni": nni, "password": password, "phone_number": phone};
+    return {
+      "nni": nni,
+      "phone": phone
+    };
   }
 }

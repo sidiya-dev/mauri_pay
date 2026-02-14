@@ -9,7 +9,7 @@ class MainRepositoryImpl implements MainRepository {
   MainRepositoryImpl({required this.mainRemoteDatasource});
 
   @override
-  Future<Either<Failure, int>> getBalance(int user_id) async {
+  Future<Either<Failure, int>> getBalance(String user_id) async {
     try {
       final balance = await mainRemoteDatasource.getBalance(user_id);
       return Right(balance);
