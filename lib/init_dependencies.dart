@@ -10,14 +10,16 @@ import 'package:mauri_pay/feautres/auth/domain/usecases/register_usecase.dart';
 import 'package:mauri_pay/feautres/auth/presentation/bloc/auth_bloc.dart';
 import 'package:mauri_pay/feautres/main/data/datasources/main_remote_datasource.dart';
 import 'package:mauri_pay/feautres/main/data/datasources/main_remote_datasource_impl.dart';
-import 'package:mauri_pay/feautres/main/data/datasources/make_transaction_datasource.dart';
-import 'package:mauri_pay/feautres/main/data/datasources/make_transaction_datasource_impl.dart';
+import 'package:mauri_pay/feautres/main/data/datasources/transaction_datasource.dart';
+import 'package:mauri_pay/feautres/main/data/datasources/transaction_datasource_impl.dart';
 import 'package:mauri_pay/feautres/main/data/repositories/main_repository_impl.dart';
-import 'package:mauri_pay/feautres/main/data/repositories/make_transaction_repository_impl.dart';
+import 'package:mauri_pay/feautres/main/data/repositories/transaction_repository_impl.dart';
 import 'package:mauri_pay/feautres/main/domain/repositories/main_repository.dart';
-import 'package:mauri_pay/feautres/main/domain/repositories/make_transaction_repository.dart';
+import 'package:mauri_pay/feautres/main/domain/repositories/transaction_repository.dart';
 import 'package:mauri_pay/feautres/main/domain/usecases/get_balanace.dart';
+import 'package:mauri_pay/feautres/main/domain/usecases/list_transaction.dart';
 import 'package:mauri_pay/feautres/main/domain/usecases/make_transaction.dart';
+import 'package:mauri_pay/feautres/main/presentation/bloc/list_transaction_bloc.dart';
 import 'package:mauri_pay/feautres/main/presentation/bloc/main_bloc.dart';
 import 'package:mauri_pay/feautres/main/presentation/bloc/make_transaction_bloc.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -89,22 +91,35 @@ Future<void> _initMain() async {
 
 Future<void> _initMakeTransaction() async {
   sl
-    ..registerLazySingleton<MakeTransactionDatasource>(
-      () => MakeTransactionDatasourceImpl(dio: sl<Dio>()),
+    // Data sources
+    ..registerLazySingleton<TransactionDatasource>(
+      () => TransactionDatasourceImpl(supabase: sl<SupabaseClient>()),
     )
-    ..registerLazySingleton<MakeTransactionRepository>(
-      () => MakeTransactionRepositoryImpl(
-        makeTransactionDatasource: sl<MakeTransactionDatasource>(),
+    // Repositories
+    ..registerLazySingleton<TransactionRepository>(
+      () => TransactionRepositoryImpl(
+        transactionDatasource: sl<TransactionDatasource>(),
       ),
     )
+    // Use cases
     ..registerLazySingleton<MakeTransaction>(
       () => MakeTransaction(
-        makeTransactionRepository: sl<MakeTransactionRepository>(),
+        makeTransactionRepository: sl<TransactionRepository>(),
       ),
     )
-    ..registerFactoryParam<MakeTransactionBloc, int, void>(
+    ..registerLazySingleton<ListTransaction>(
+      () => ListTransaction(repository: sl<TransactionRepository>()),
+    )
+    // Blocs
+    ..registerFactoryParam<MakeTransactionBloc, String, void>(
       (userId, _) => MakeTransactionBloc(
         makeTransactionUseCase: sl<MakeTransaction>(),
+        userId: userId,
+      ),
+    )
+    ..registerFactoryParam<ListTransactionBloc, String, void>(
+      (userId, _) => ListTransactionBloc(
+        listTransaction: sl<ListTransaction>(),
         userId: userId,
       ),
     );

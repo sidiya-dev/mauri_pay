@@ -1,11 +1,11 @@
 import 'package:fpdart/src/either.dart';
 import 'package:mauri_pay/core/error/failure.dart';
 import 'package:mauri_pay/core/usecase/usecase.dart';
-import 'package:mauri_pay/feautres/main/domain/repositories/make_transaction_repository.dart';
+import 'package:mauri_pay/feautres/main/domain/repositories/transaction_repository.dart';
 
 class MakeTransaction
     implements Usecase<bool, MakeTransactionType> {
-  final MakeTransactionRepository makeTransactionRepository;
+  final TransactionRepository makeTransactionRepository;
 
   MakeTransaction({required this.makeTransactionRepository});
 
@@ -21,13 +21,13 @@ class MakeTransactionType {
   final double amount;
   final String senderId;
   final String receiverPhone;
-  final int transactionTypeId;
+  final String transactionType;
 
   MakeTransactionType({
     required this.amount,
     required this.senderId,
     required this.receiverPhone,
-    required this.transactionTypeId,
+    required this.transactionType,
   });
 }
 

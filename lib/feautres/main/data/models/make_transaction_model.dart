@@ -5,7 +5,7 @@ class MakeTransactionModel extends MakeTransactionEntity {
     required super.amount,
     required super.senderId,
     required super.receiverPhone,
-    required super.transactionTypeId,
+    required super.transactionType,
   });
 
   Map<String, dynamic> toJson() {
@@ -13,7 +13,7 @@ class MakeTransactionModel extends MakeTransactionEntity {
       'sender_id': senderId,
       'receiver_phone': receiverPhone,
       'amount': amount,
-      'transaction_type_id': transactionTypeId,
+      'transaction_type': transactionType,
     };
   }
 
@@ -22,7 +22,7 @@ class MakeTransactionModel extends MakeTransactionEntity {
       amount: (json['amount'] as num).toDouble(),
       senderId: json['sender_id'] as String,
       receiverPhone: json['receiver_phone'] as String,
-      transactionTypeId: json['transaction_type_id'] as int,
+      transactionType: json['transaction_type'] as String,
     );
   }
 }

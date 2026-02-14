@@ -11,7 +11,6 @@ class OptionCardWidget extends StatefulWidget {
     required this.text,
     required this.onTap,
   });
-
   @override
   State<OptionCardWidget> createState() => _OptionCardWidgetState();
 }
