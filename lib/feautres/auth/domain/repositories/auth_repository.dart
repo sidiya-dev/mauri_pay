@@ -11,4 +11,6 @@ abstract interface class AuthRepository {
   Future<Either<Failure, UserEntity>> login({
     required LoginParams params
   });
+  Future<Either<Failure, UserEntity>> currentUser();
+  Future<void> logout();
 }

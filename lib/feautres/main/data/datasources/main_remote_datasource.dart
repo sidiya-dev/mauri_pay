@@ -1,3 +1,3 @@
 abstract interface class MainRemoteDatasource {
-  Future<int> getBalance(String user_id);
+  Future<double> getBalance(String user_id);
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mauri_pay/core/theme/app_colors.dart';
 
 class OptionCardWidget extends StatefulWidget {
   final IconData icon;
@@ -16,31 +17,54 @@ class OptionCardWidget extends StatefulWidget {
 }
 
 class _OptionCardWidgetState extends State<OptionCardWidget> {
+  bool _pressed = false;
+
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: widget.onTap,
-      child: Container(
-        margin: EdgeInsets.symmetric(vertical: 15.0, horizontal: 4.0),
-        padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 0.0),
-        width: 170,
-        height: 100,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(9),
-          border: BoxBorder.all(
-            color: const Color.fromARGB(58, 130, 130, 145),
-            strokeAlign: BorderSide.strokeAlignCenter,
-            style: BorderStyle.solid,
-          ),
-        ),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            spacing: 10,
-            children: [
-              Icon(widget.icon, size: 40, fontWeight: FontWeight.bold),
-              Text(widget.text, style: Theme.of(context).textTheme.bodyLarge,),
-            ],
+    return AnimatedScale(
+      scale: _pressed ? 0.97 : 1.0,
+      duration: const Duration(milliseconds: 120),
+      curve: Curves.easeOut,
+      child: Material(
+        color: Colors.white.withValues(alpha: 0.05),
+        borderRadius: BorderRadius.circular(16),
+        child: InkWell(
+          onTap: widget.onTap,
+          onTapDown: (_) => setState(() => _pressed = true),
+          onTapUp: (_) => setState(() => _pressed = false),
+          onTapCancel: () => setState(() => _pressed = false),
+          borderRadius: BorderRadius.circular(16),
+          child: Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(
+                color: Colors.white.withValues(alpha: 0.08),
+              ),
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: AppColors.accentOrange.withValues(alpha: 0.15),
+                  ),
+                  child: Icon(
+                    widget.icon,
+                    size: 28,
+                    color: AppColors.accentOrange,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                Text(
+                  widget.text,
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.bodyMedium,
+                ),
+              ],
+            ),
           ),
         ),
       ),

@@ -1,7 +1,7 @@
 class TransactionEntity {
-  final int transactionId;
+  final String transactionId;
   final String senderId;
-  final String receiverId;
+  final String? receiverId;
   final double amount;
   final String transactionType;
   final DateTime createdAt;
@@ -17,9 +17,9 @@ class TransactionEntity {
 
   factory TransactionEntity.fromJson(Map<String, dynamic> json) {
     return TransactionEntity(
-      transactionId: json['transaction_id'] as int,
+      transactionId: json['id']?.toString() ?? '',
       senderId: json['sender_id'] as String,
-      receiverId: json['receiver_id'] as String,
+      receiverId: json['receiver_id'] as String?,
       amount: (json['amount'] as num).toDouble(),
       transactionType: json['transaction_type'] as String,
       createdAt: DateTime.parse(json['created_at'] as String),
@@ -28,7 +28,7 @@ class TransactionEntity {
 
   Map<String, dynamic> toJson() {
     return {
-      'transaction_id': transactionId,
+      'id': transactionId,
       'sender_id': senderId,
       'receiver_id': receiverId,
       'amount': amount,

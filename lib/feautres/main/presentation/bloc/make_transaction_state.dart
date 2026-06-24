@@ -11,6 +11,7 @@ final class MakeTransactionSuccess extends MakeTransactionState {}
 
 final class MakeTransactionFailure extends MakeTransactionState {
   final String error;
+  final String? code;
 
-  MakeTransactionFailure(this.error);
+  MakeTransactionFailure(this.error, {this.code});
 }

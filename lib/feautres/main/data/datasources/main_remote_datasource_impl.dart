@@ -1,26 +1,21 @@
+import 'package:dio/dio.dart';
 import 'package:mauri_pay/core/error/exceptions.dart';
 import 'package:mauri_pay/feautres/main/data/datasources/main_remote_datasource.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 class MainRemoteDatasourceImpl implements MainRemoteDatasource {
-  final SupabaseClient supabase;
+  final Dio dio;
 
-  MainRemoteDatasourceImpl({required this.supabase});
+  MainRemoteDatasourceImpl({required this.dio});
 
   @override
-  Future<int> getBalance(String userId) async {
+  Future<double> getBalance(String userId) async {
     try {
-      final result = await supabase
-          .from('account')
-          .select('balance')
-          .eq('user_id', userId)
-          .maybeSingle();
-
-      if (result == null) throw const ServerException('Account not found');
-
-      // balance is numeric in DB, convert to int
-      final balance = (result['balance'] as num).toInt();
+      // The current user is identified by the session cookie, so userId is unused.
+      final response = await dio.get('/api/v1/me');
+      final balance = (response.data['balance'] as num).toDouble();
       return balance;
+    } on DioException catch (e) {
+      throw ServerException(e.message ?? 'Failed to load balance');
     } catch (e) {
       throw ServerException(e.toString());
     }

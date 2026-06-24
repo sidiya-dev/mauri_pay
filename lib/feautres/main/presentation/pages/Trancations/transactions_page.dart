@@ -116,7 +116,7 @@ class TransactionsPage extends StatelessWidget {
                         padding: const EdgeInsets.only(bottom: 12),
                         child: ListTransactionsWidget(
                           type: type,
-                          amount: t.amount.toInt(),
+                          amount: t.amount,
                           title: title,
                           date: t.createdAt,
                         ),

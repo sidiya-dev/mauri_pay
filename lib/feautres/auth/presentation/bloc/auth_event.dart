@@ -14,3 +14,11 @@ class RegisterEvent extends AuthEvent {
 
   RegisterEvent({required this.params});
 }
+
+/// Dispatched on app start to resolve whether a session is already active.
+class AuthCheckRequested extends AuthEvent {}
+
+/// Dispatched when the backend reports the session is no longer valid (401).
+class SessionExpired extends AuthEvent {}
+
+class LogoutEvent extends AuthEvent {}

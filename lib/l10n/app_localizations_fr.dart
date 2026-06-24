@@ -98,4 +98,85 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get agencies => 'Agences';
+
+  @override
+  String get error_invalid_credentials =>
+      'Numéro de téléphone ou mot de passe invalide';
+
+  @override
+  String get error_account_locked =>
+      'Compte verrouillé après trop de tentatives. Veuillez réessayer plus tard.';
+
+  @override
+  String get error_phone_already_exists =>
+      'Ce numéro de téléphone est déjà enregistré';
+
+  @override
+  String get error_recipient_not_found => 'Destinataire introuvable';
+
+  @override
+  String get error_insufficient_balance => 'Solde insuffisant';
+
+  @override
+  String get error_self_transfer =>
+      'Vous ne pouvez pas transférer vers vous-même';
+
+  @override
+  String get error_network => 'Erreur réseau. Vérifiez votre connexion.';
+
+  @override
+  String get error_unexpected =>
+      'Une erreur s\'est produite. Veuillez réessayer.';
+
+  @override
+  String get error_payment_not_found => 'Code de paiement invalide ou inconnu';
+
+  @override
+  String get error_payment_already_paid => 'Ce paiement a déjà été effectué';
+
+  @override
+  String get error_payment_expired => 'Ce code de paiement a expiré';
+
+  @override
+  String get error_payment_not_payable => 'Ce paiement ne peut plus être réglé';
+
+  @override
+  String get error_invalid_password => 'Mot de passe incorrect';
+
+  @override
+  String get pay => 'Payer';
+
+  @override
+  String get next => 'Suivant';
+
+  @override
+  String get pay_enter_code_title => 'Saisissez le code de paiement';
+
+  @override
+  String get pay_code_hint => 'Code de paiement';
+
+  @override
+  String get pay_code_required => 'Veuillez saisir le code de paiement';
+
+  @override
+  String get pay_amount_to_pay => 'Montant à payer';
+
+  @override
+  String get pay_merchant => 'Marchand';
+
+  @override
+  String get pay_code_label => 'Code';
+
+  @override
+  String get pay_enter_password =>
+      'Saisissez votre mot de passe pour confirmer';
+
+  @override
+  String get pay_confirm => 'Payer maintenant';
+
+  @override
+  String get pay_success => 'Paiement réussi';
+
+  @override
+  String get pay_done => 'Terminé';
 }

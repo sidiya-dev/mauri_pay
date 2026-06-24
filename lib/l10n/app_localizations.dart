@@ -273,6 +273,156 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Agencies'**
   String get agencies;
+
+  /// No description provided for @error_invalid_credentials.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid phone number or password'**
+  String get error_invalid_credentials;
+
+  /// No description provided for @error_account_locked.
+  ///
+  /// In en, this message translates to:
+  /// **'Account locked after too many attempts. Please try again later.'**
+  String get error_account_locked;
+
+  /// No description provided for @error_phone_already_exists.
+  ///
+  /// In en, this message translates to:
+  /// **'This phone number is already registered'**
+  String get error_phone_already_exists;
+
+  /// No description provided for @error_recipient_not_found.
+  ///
+  /// In en, this message translates to:
+  /// **'Recipient not found'**
+  String get error_recipient_not_found;
+
+  /// No description provided for @error_insufficient_balance.
+  ///
+  /// In en, this message translates to:
+  /// **'Insufficient balance'**
+  String get error_insufficient_balance;
+
+  /// No description provided for @error_self_transfer.
+  ///
+  /// In en, this message translates to:
+  /// **'You cannot transfer to yourself'**
+  String get error_self_transfer;
+
+  /// No description provided for @error_network.
+  ///
+  /// In en, this message translates to:
+  /// **'Network error. Please check your connection.'**
+  String get error_network;
+
+  /// No description provided for @error_unexpected.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong. Please try again.'**
+  String get error_unexpected;
+
+  /// No description provided for @error_payment_not_found.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid or unknown payment code'**
+  String get error_payment_not_found;
+
+  /// No description provided for @error_payment_already_paid.
+  ///
+  /// In en, this message translates to:
+  /// **'This payment was already completed'**
+  String get error_payment_already_paid;
+
+  /// No description provided for @error_payment_expired.
+  ///
+  /// In en, this message translates to:
+  /// **'This payment code has expired'**
+  String get error_payment_expired;
+
+  /// No description provided for @error_payment_not_payable.
+  ///
+  /// In en, this message translates to:
+  /// **'This payment can no longer be paid'**
+  String get error_payment_not_payable;
+
+  /// No description provided for @error_invalid_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Incorrect password'**
+  String get error_invalid_password;
+
+  /// No description provided for @pay.
+  ///
+  /// In en, this message translates to:
+  /// **'Pay'**
+  String get pay;
+
+  /// No description provided for @next.
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get next;
+
+  /// No description provided for @pay_enter_code_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the payment code'**
+  String get pay_enter_code_title;
+
+  /// No description provided for @pay_code_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment code'**
+  String get pay_code_hint;
+
+  /// No description provided for @pay_code_required.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter the payment code'**
+  String get pay_code_required;
+
+  /// No description provided for @pay_amount_to_pay.
+  ///
+  /// In en, this message translates to:
+  /// **'Amount to pay'**
+  String get pay_amount_to_pay;
+
+  /// No description provided for @pay_merchant.
+  ///
+  /// In en, this message translates to:
+  /// **'Merchant'**
+  String get pay_merchant;
+
+  /// No description provided for @pay_code_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Code'**
+  String get pay_code_label;
+
+  /// No description provided for @pay_enter_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your password to confirm'**
+  String get pay_enter_password;
+
+  /// No description provided for @pay_confirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Pay now'**
+  String get pay_confirm;
+
+  /// No description provided for @pay_success.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment successful'**
+  String get pay_success;
+
+  /// No description provided for @pay_done.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get pay_done;
 }
 
 class _AppLocalizationsDelegate

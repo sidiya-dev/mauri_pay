@@ -1,61 +1,29 @@
+import 'package:dio/dio.dart';
 import 'package:mauri_pay/core/error/exceptions.dart';
 import 'package:mauri_pay/feautres/auth/data/datasources/auth_remote_datasource.dart';
 import 'package:mauri_pay/feautres/auth/data/models/user_model.dart';
 import 'package:mauri_pay/feautres/auth/domain/usecases/login_usecase.dart';
 import 'package:mauri_pay/feautres/auth/domain/usecases/register_usecase.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 class AuthRemoteDatasourceImpl implements AuthRemoteDatasource {
-  final SupabaseClient supabase;
+  final Dio dio;
 
-  AuthRemoteDatasourceImpl({required this.supabase});
+  AuthRemoteDatasourceImpl({required this.dio});
 
   @override
   Future<UserModel> register(RegisterParams params) async {
     try {
-      final person = await supabase
-          .from('person')
-          .select('person_id, nni, first_name, last_name')
-          .eq('nni', params.nni)
-          .maybeSingle();
-
-      if (person == null) throw const ServerException("NNI not found");
-
-      final existingUser = await supabase
-          .from('app_user')
-          .select('user_id')
-          .eq('person_id', person['person_id'])
-          .maybeSingle();
-
-      if (existingUser != null)
-        throw const ServerException("NNI is already registered");
-
-      final response = await supabase.auth.signUp(
-        phone: params.phone,
-        password: params.password,
+      final response = await dio.post(
+        '/api/v1/auth/register',
+        data: {
+          'phone': params.phone,
+          'fullName': params.fullName,
+          'password': params.password,
+        },
       );
-
-      final user = response.user;
-      if (user == null) throw const ServerException("Registration failed");
-
-      await supabase.from('app_user').insert({
-        'user_id': user.id,
-        'person_id': person['person_id'],
-        'phone': params.phone,
-        'role': 'client',
-      });
-
-      return UserModel(
-        userId: user.id,
-        nni: person['nni'],
-        firstName: person['first_name'],
-        lastName: person['last_name'],
-        phone: user.phone ?? '',
-        password: '',
-        role: 'client',
-      );
-    } on AuthException catch (e) {
-      throw ServerException(e.message);
+      return _mapUser(response.data as Map<String, dynamic>);
+    } on DioException catch (e) {
+      throw _toException(e);
     } catch (e) {
       throw ServerException(e.toString());
     }
@@ -64,39 +32,68 @@ class AuthRemoteDatasourceImpl implements AuthRemoteDatasource {
   @override
   Future<UserModel> login(LoginParams params) async {
     try {
-      final response = await supabase.auth.signInWithPassword(
-        phone: params.phone,
-        password: params.password,
+      final response = await dio.post(
+        '/api/v1/auth/login',
+        data: {'phone': params.phone, 'password': params.password},
       );
-
-      final user = response.user;
-      if (user == null) throw const ServerException("Login failed");
-
-      final result = await supabase
-          .from('app_user')
-          .select(
-            'user_id, role, person:person_id (nni, first_name, last_name)',
-          )
-          .eq('user_id', user.id)
-          .maybeSingle();
-
-      if (result == null) throw const ServerException("User not found");
-
-      final person = result['person'];
-
-      return UserModel(
-        userId: user.id,
-        nni: person['nni'],
-        firstName: person['first_name'],
-        lastName: person['last_name'],
-        phone: user.phone ?? '',
-        password: '',
-        role: result['role'],
-      );
-    } on AuthException catch (e) {
-      throw ServerException(e.message);
+      return _mapUser(response.data as Map<String, dynamic>);
+    } on DioException catch (e) {
+      throw _toException(e);
     } catch (e) {
       throw ServerException(e.toString());
     }
+  }
+
+  @override
+  Future<UserModel> currentUser() async {
+    try {
+      final response = await dio.get('/api/v1/me');
+      return _mapUser(response.data as Map<String, dynamic>);
+    } on DioException catch (e) {
+      throw _toException(e);
+    } catch (e) {
+      throw ServerException(e.toString());
+    }
+  }
+
+  @override
+  Future<void> logout() async {
+    try {
+      await dio.post('/api/v1/auth/logout');
+    } on DioException {
+      // Logging out is best-effort; clearing local state is what matters to the user.
+    }
+  }
+
+  /// Maps the backend user payload ({id, phone, fullName, balance, currency})
+  /// onto the app's UserModel, splitting fullName into first/last name.
+  UserModel _mapUser(Map<String, dynamic> json) {
+    final fullName = (json['fullName'] as String?)?.trim() ?? '';
+    final parts = fullName.isEmpty ? <String>[] : fullName.split(RegExp(r'\s+'));
+    final firstName = parts.isNotEmpty ? parts.first : '-';
+    final lastName = parts.length > 1 ? parts.sublist(1).join(' ') : '-';
+
+    return UserModel(
+      userId: json['id']?.toString() ?? '',
+      nni: '',
+      firstName: firstName,
+      lastName: lastName,
+      phone: json['phone']?.toString() ?? '',
+      password: '',
+      role: json['role']?.toString() ?? 'USER',
+    );
+  }
+
+  /// Builds a ServerException carrying both the backend message and its error code
+  /// (so the UI can show a translated message keyed by the code).
+  ServerException _toException(DioException e) {
+    final data = e.response?.data;
+    if (data is Map) {
+      final code = data['code']?.toString();
+      final m = data['message'];
+      final message = m is Map ? m.values.join(', ') : (m?.toString() ?? 'Error');
+      return ServerException(message, code);
+    }
+    return ServerException(e.message ?? 'Network error', 'NETWORK');
   }
 }

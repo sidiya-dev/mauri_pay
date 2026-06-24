@@ -33,6 +33,33 @@
   "profile": "Profile",
   "logout": "Logout",
   "contacts": "Contacts",
-  "agencies": "Agencies"
+  "agencies": "Agencies",
 
+  "error_invalid_credentials": "Invalid phone number or password",
+  "error_account_locked": "Account locked after too many attempts. Please try again later.",
+  "error_phone_already_exists": "This phone number is already registered",
+  "error_recipient_not_found": "Recipient not found",
+  "error_insufficient_balance": "Insufficient balance",
+  "error_self_transfer": "You cannot transfer to yourself",
+  "error_network": "Network error. Please check your connection.",
+  "error_unexpected": "Something went wrong. Please try again.",
+
+  "error_payment_not_found": "Invalid or unknown payment code",
+  "error_payment_already_paid": "This payment was already completed",
+  "error_payment_expired": "This payment code has expired",
+  "error_payment_not_payable": "This payment can no longer be paid",
+  "error_invalid_password": "Incorrect password",
+
+  "pay": "Pay",
+  "next": "Next",
+  "pay_enter_code_title": "Enter the payment code",
+  "pay_code_hint": "Payment code",
+  "pay_code_required": "Please enter the payment code",
+  "pay_amount_to_pay": "Amount to pay",
+  "pay_merchant": "Merchant",
+  "pay_code_label": "Code",
+  "pay_enter_password": "Enter your password to confirm",
+  "pay_confirm": "Pay now",
+  "pay_success": "Payment successful",
+  "pay_done": "Done"
 }

@@ -16,20 +16,25 @@ class RegisterUsecase implements Usecase<UserEntity, RegisterParams> {
 }
 
 class RegisterParams {
-  final String nni;
+  final String firstName;
+  final String lastName;
   final String phone;
   final String password;
 
   RegisterParams({
-    required this.nni,
+    required this.firstName,
+    required this.lastName,
     required this.phone,
     required this.password,
   });
 
+  String get fullName => "$firstName $lastName".trim();
+
   Map<String, dynamic> toJson() {
     return {
-      "nni": nni,
-      "phone": phone
+      "fullName": fullName,
+      "phone": phone,
+      "password": password,
     };
   }
 }

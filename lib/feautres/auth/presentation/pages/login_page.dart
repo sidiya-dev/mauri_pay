@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:mauri_pay/core/error/error_messages.dart';
 import 'package:mauri_pay/core/theme/app_colors.dart';
 import 'package:mauri_pay/core/utils/show_snackbar.dart';
 import 'package:mauri_pay/feautres/auth/domain/usecases/login_usecase.dart';
@@ -40,7 +41,7 @@ class _LoginPageState extends State<LoginPage> {
       body: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) {
           if (state is Error) {
-            showSnackBar(context, state.message);
+            showSnackBar(context, localizedError(t, state.code, state.message));
           } else if (state is Success) {
             context.go("/");
           }

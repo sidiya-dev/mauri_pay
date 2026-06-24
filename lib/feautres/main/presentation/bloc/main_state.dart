@@ -5,7 +5,7 @@ sealed class MainState {}
 
 final class MainInitial extends MainState {}
 final class MainSuccess extends MainState {
-  final int balance;
+  final double balance;
 
   MainSuccess({required this.balance});
 }

@@ -95,4 +95,80 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get agencies => 'الوكالات';
+
+  @override
+  String get error_invalid_credentials => 'رقم الهاتف أو كلمة المرور غير صحيحة';
+
+  @override
+  String get error_account_locked =>
+      'تم قفل الحساب بعد عدة محاولات. يرجى المحاولة لاحقًا.';
+
+  @override
+  String get error_phone_already_exists => 'رقم الهاتف هذا مسجل بالفعل';
+
+  @override
+  String get error_recipient_not_found => 'المستلم غير موجود';
+
+  @override
+  String get error_insufficient_balance => 'الرصيد غير كافٍ';
+
+  @override
+  String get error_self_transfer => 'لا يمكنك التحويل إلى نفسك';
+
+  @override
+  String get error_network => 'خطأ في الشبكة. يرجى التحقق من اتصالك.';
+
+  @override
+  String get error_unexpected => 'حدث خطأ ما. يرجى المحاولة مرة أخرى.';
+
+  @override
+  String get error_payment_not_found => 'رمز الدفع غير صالح أو غير معروف';
+
+  @override
+  String get error_payment_already_paid => 'تم إتمام هذا الدفع بالفعل';
+
+  @override
+  String get error_payment_expired => 'انتهت صلاحية رمز الدفع هذا';
+
+  @override
+  String get error_payment_not_payable => 'لم يعد من الممكن دفع هذا الطلب';
+
+  @override
+  String get error_invalid_password => 'كلمة المرور غير صحيحة';
+
+  @override
+  String get pay => 'ادفع';
+
+  @override
+  String get next => 'التالي';
+
+  @override
+  String get pay_enter_code_title => 'أدخل رمز الدفع';
+
+  @override
+  String get pay_code_hint => 'رمز الدفع';
+
+  @override
+  String get pay_code_required => 'يرجى إدخال رمز الدفع';
+
+  @override
+  String get pay_amount_to_pay => 'المبلغ المطلوب دفعه';
+
+  @override
+  String get pay_merchant => 'التاجر';
+
+  @override
+  String get pay_code_label => 'الرمز';
+
+  @override
+  String get pay_enter_password => 'أدخل كلمة المرور للتأكيد';
+
+  @override
+  String get pay_confirm => 'ادفع الآن';
+
+  @override
+  String get pay_success => 'تم الدفع بنجاح';
+
+  @override
+  String get pay_done => 'تم';
 }

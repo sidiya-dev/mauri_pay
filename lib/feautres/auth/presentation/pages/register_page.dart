@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:mauri_pay/core/error/error_messages.dart';
 import 'package:mauri_pay/core/theme/app_colors.dart';
 import 'package:mauri_pay/core/utils/show_snackbar.dart';
 import 'package:mauri_pay/feautres/auth/domain/usecases/register_usecase.dart';
@@ -20,17 +21,19 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   final formKey = GlobalKey<FormState>();
-  final TextEditingController nniController = TextEditingController();
+  final TextEditingController firstNameController = TextEditingController();
+  final TextEditingController lastNameController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmController = TextEditingController();
 
   @override
   void dispose() {
-    nniController.dispose();
+    firstNameController.dispose();
+    lastNameController.dispose();
     phoneController.dispose();
     passwordController.dispose();
-    passwordController.dispose();
+    confirmController.dispose();
     super.dispose();
   }
 
@@ -42,7 +45,7 @@ class _RegisterPageState extends State<RegisterPage> {
       body: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) {
           if (state is Error) {
-            showSnackBar(context, state.message);
+            showSnackBar(context, localizedError(t, state.code, state.message));
           } else if (state is Success) {
             context.go("/");
           }
@@ -61,18 +64,29 @@ class _RegisterPageState extends State<RegisterPage> {
                     Image.asset("assets/images/mauri_pay.png", height: 220),
                     SizedBox(height: 30),
                     AuthFiled(
-                      controller: nniController,
-                      hintText: t.nni_placeholder,
-                      prefixIcon: Icon(Icons.badge),
+                      controller: firstNameController,
+                      hintText: "First name",
+                      prefixIcon: Icon(Icons.person),
                       isObscure: false,
-                      textInputType: TextInputType.number,
-                      maxLength: 8,
+                      textInputType: TextInputType.name,
                       validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return t.nni_error_empty;
+                        if (value == null || value.trim().isEmpty) {
+                          return "First name is required";
                         }
-                      
-
+                        return null;
+                      },
+                    ),
+                    SizedBox(height: 15),
+                    AuthFiled(
+                      controller: lastNameController,
+                      hintText: "Last name",
+                      prefixIcon: Icon(Icons.person_outline),
+                      isObscure: false,
+                      textInputType: TextInputType.name,
+                      validator: (value) {
+                        if (value == null || value.trim().isEmpty) {
+                          return "Last name is required";
+                        }
                         return null;
                       },
                     ),
@@ -144,7 +158,8 @@ class _RegisterPageState extends State<RegisterPage> {
                           context.read<AuthBloc>()..add(
                             RegisterEvent(
                               params: RegisterParams(
-                                nni: nniController.text,
+                                firstName: firstNameController.text.trim(),
+                                lastName: lastNameController.text.trim(),
                                 phone: phoneController.text,
                                 password: passwordController.text,
                               ),

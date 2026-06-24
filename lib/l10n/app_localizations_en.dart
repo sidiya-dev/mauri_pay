@@ -94,4 +94,81 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get agencies => 'Agencies';
+
+  @override
+  String get error_invalid_credentials => 'Invalid phone number or password';
+
+  @override
+  String get error_account_locked =>
+      'Account locked after too many attempts. Please try again later.';
+
+  @override
+  String get error_phone_already_exists =>
+      'This phone number is already registered';
+
+  @override
+  String get error_recipient_not_found => 'Recipient not found';
+
+  @override
+  String get error_insufficient_balance => 'Insufficient balance';
+
+  @override
+  String get error_self_transfer => 'You cannot transfer to yourself';
+
+  @override
+  String get error_network => 'Network error. Please check your connection.';
+
+  @override
+  String get error_unexpected => 'Something went wrong. Please try again.';
+
+  @override
+  String get error_payment_not_found => 'Invalid or unknown payment code';
+
+  @override
+  String get error_payment_already_paid => 'This payment was already completed';
+
+  @override
+  String get error_payment_expired => 'This payment code has expired';
+
+  @override
+  String get error_payment_not_payable => 'This payment can no longer be paid';
+
+  @override
+  String get error_invalid_password => 'Incorrect password';
+
+  @override
+  String get pay => 'Pay';
+
+  @override
+  String get next => 'Next';
+
+  @override
+  String get pay_enter_code_title => 'Enter the payment code';
+
+  @override
+  String get pay_code_hint => 'Payment code';
+
+  @override
+  String get pay_code_required => 'Please enter the payment code';
+
+  @override
+  String get pay_amount_to_pay => 'Amount to pay';
+
+  @override
+  String get pay_merchant => 'Merchant';
+
+  @override
+  String get pay_code_label => 'Code';
+
+  @override
+  String get pay_enter_password => 'Enter your password to confirm';
+
+  @override
+  String get pay_confirm => 'Pay now';
+
+  @override
+  String get pay_success => 'Payment successful';
+
+  @override
+  String get pay_done => 'Done';
 }

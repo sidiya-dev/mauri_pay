@@ -6,5 +6,5 @@ class LocaleCubit extends Cubit<Locale> {
 
   void changeLocale(String languageCode) {
     emit(Locale(languageCode));
-  }
+  } 
 }

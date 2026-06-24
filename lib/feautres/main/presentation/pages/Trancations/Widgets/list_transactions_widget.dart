@@ -14,14 +14,14 @@ class ListTransactionsWidget extends StatelessWidget {
   });
 
   final ListTransactionType type;
-  final int amount;
+  final double amount;
   final String title;
   final DateTime date;
 
   @override
   Widget build(BuildContext context) {
     final isIncome = type == ListTransactionType.income;
-    final formatter = NumberFormat("#,##0");
+    final formatter = NumberFormat("#,##0.00");
     return Card(
       color: AppColors.grayColor,
       child: ListTile(

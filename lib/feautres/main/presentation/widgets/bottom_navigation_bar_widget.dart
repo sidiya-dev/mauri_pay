@@ -4,13 +4,13 @@ import 'package:mauri_pay/core/theme/app_colors.dart';
 import 'package:mauri_pay/feautres/main/presentation/cubit/main_cubit.dart';
 import 'package:mauri_pay/l10n/app_localizations.dart';
 
-class BottomNavigationBarWidget extends StatelessWidget {
+class BottomNavigationBarWidget extends StatelessWidget{
   const BottomNavigationBarWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context);
-    return BlocBuilder<MainCubit, int>(
+    return BlocBuilder<MainCubit , int>(
       builder: (context, selectedIndex) {
         return NavigationBar(
           indicatorColor: AppColors.gradiant1,

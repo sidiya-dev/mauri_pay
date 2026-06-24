@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mauri_pay/core/error/error_messages.dart';
 import 'package:mauri_pay/core/theme/app_colors.dart';
+import 'package:mauri_pay/l10n/app_localizations.dart';
 import 'package:mauri_pay/feautres/auth/presentation/bloc/auth_bloc.dart';
 import 'package:mauri_pay/feautres/main/domain/entities/make_transaction_entity.dart';
 import 'package:mauri_pay/feautres/main/presentation/bloc/make_transaction_bloc.dart';
@@ -107,7 +109,13 @@ class _TransferPageState extends State<TransferPage> {
                     children: [
                       const Icon(Icons.error_outline, color: Colors.white),
                       const SizedBox(width: 12),
-                      Expanded(child: Text(state.error)),
+                      Expanded(
+                        child: Text(localizedError(
+                          AppLocalizations.of(context),
+                          state.code,
+                          state.error,
+                        )),
+                      ),
                     ],
                   ),
                   backgroundColor: Colors.red.shade600,

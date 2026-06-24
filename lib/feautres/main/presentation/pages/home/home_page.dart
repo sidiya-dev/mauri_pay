@@ -16,15 +16,18 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context);
     return SingleChildScrollView(
-      padding: EdgeInsets.all(10),
+      padding: const EdgeInsets.all(16),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SoldeWidgets(),
-          SizedBox(height: 15),
+          const SoldeWidgets(),
+          const SizedBox(height: 24),
           GridView.count(
             crossAxisCount: 2,
-            mainAxisSpacing: 10,
-            crossAxisSpacing: 10,
+            mainAxisSpacing: 12,
+            crossAxisSpacing: 12,
+            childAspectRatio: 1.1,
+            physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             children: [
               OptionCardWidget(
@@ -35,7 +38,12 @@ class _HomePageState extends State<HomePage> {
               OptionCardWidget(
                 icon: Icons.monetization_on_outlined,
                 text: t.request_money,
-                onTap: () {},
+                onTap: () => context.push("/request"),
+              ),
+              OptionCardWidget(
+                icon: Icons.qr_code_2,
+                text: t.pay,
+                onTap: () => context.push("/pay"),
               ),
             ],
           ),

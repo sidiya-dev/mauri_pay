@@ -20,7 +20,7 @@ class AuthRepositoryImpl implements AuthRepository {
       final user = await authRemoteDatasource.register(params);
       return Right(user);
     } on ServerException catch (e) {
-      return Left(Failure(message: e.message));
+      return Left(Failure(message: e.message, code: e.code));
     }
   }
 
@@ -32,7 +32,20 @@ class AuthRepositoryImpl implements AuthRepository {
       final user = await authRemoteDatasource.login(params);
       return Right(user);
     } on ServerException catch (e) {
-      return Left(Failure(message: e.message));
+      return Left(Failure(message: e.message, code: e.code));
     }
   }
+
+  @override
+  Future<Either<Failure, UserEntity>> currentUser() async {
+    try {
+      final user = await authRemoteDatasource.currentUser();
+      return Right(user);
+    } on ServerException catch (e) {
+      return Left(Failure(message: e.message, code: e.code));
+    }
+  }
+
+  @override
+  Future<void> logout() => authRemoteDatasource.logout();
 }

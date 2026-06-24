@@ -66,6 +66,7 @@ class DrawerWidget extends StatelessWidget {
                                 const SizedBox(height: 8),
                                 TextButton(
                                   onPressed: () {
+                                    context.read<AuthBloc>().add(LogoutEvent());
                                     context.go("/login");
                                   },
                                   style: TextButton.styleFrom(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mauri_pay/core/theme/app_colors.dart';
 import 'package:mauri_pay/feautres/auth/presentation/bloc/auth_bloc.dart';
 
@@ -159,6 +160,10 @@ class ProfilePage extends StatelessWidget {
                         textColor: Colors.red,
                         iconColor: Colors.red,
                         noDivider: true,
+                        onTap: () {
+                          context.read<AuthBloc>().add(LogoutEvent());
+                          context.go("/login");
+                        },
                       ),
                     ],
                   ),
@@ -178,12 +183,14 @@ class ProfilePage extends StatelessWidget {
     Color? textColor,
     Color? iconColor,
     bool noDivider = false,
+    VoidCallback? onTap,
   }) {
     return Column(
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 8),
           child: ListTile(
+            onTap: onTap,
             contentPadding: EdgeInsets.zero,
             leading: Icon(icon, color: iconColor),
             title: Text(

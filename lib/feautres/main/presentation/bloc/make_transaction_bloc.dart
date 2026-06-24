@@ -36,7 +36,8 @@ class MakeTransactionBloc
       );
 
       result.fold(
-        (failure) => emit(MakeTransactionFailure(failure.message)),
+        (failure) =>
+            emit(MakeTransactionFailure(failure.message, code: failure.code)),
         (_) => emit(MakeTransactionSuccess()),
       );
     } catch (e) {

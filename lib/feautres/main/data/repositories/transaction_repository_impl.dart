@@ -1,4 +1,5 @@
 import 'package:fpdart/src/either.dart';
+import 'package:mauri_pay/core/error/exceptions.dart';
 import 'package:mauri_pay/core/error/failure.dart';
 import 'package:mauri_pay/feautres/main/data/datasources/transaction_datasource.dart';
 import 'package:mauri_pay/feautres/main/domain/entities/transaction_entity.dart';
@@ -14,6 +15,8 @@ class TransactionRepositoryImpl implements TransactionRepository {
     try {
       final result = await transactionDatasource.makeTransaction(params);
       return Right(result);
+    } on ServerException catch (e) {
+      return Left(Failure(message: e.message, code: e.code));
     } catch (e) {
       return Left(Failure(message: 'Failed make transaction'));
     }

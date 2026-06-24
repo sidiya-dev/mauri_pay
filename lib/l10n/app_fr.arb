@@ -28,5 +28,33 @@
   "profile": "Profil",
   "logout": "Déconnexion",
   "contacts": "Contacts",
-  "agencies": "Agences"
+  "agencies": "Agences",
+
+  "error_invalid_credentials": "Numéro de téléphone ou mot de passe invalide",
+  "error_account_locked": "Compte verrouillé après trop de tentatives. Veuillez réessayer plus tard.",
+  "error_phone_already_exists": "Ce numéro de téléphone est déjà enregistré",
+  "error_recipient_not_found": "Destinataire introuvable",
+  "error_insufficient_balance": "Solde insuffisant",
+  "error_self_transfer": "Vous ne pouvez pas transférer vers vous-même",
+  "error_network": "Erreur réseau. Vérifiez votre connexion.",
+  "error_unexpected": "Une erreur s'est produite. Veuillez réessayer.",
+
+  "error_payment_not_found": "Code de paiement invalide ou inconnu",
+  "error_payment_already_paid": "Ce paiement a déjà été effectué",
+  "error_payment_expired": "Ce code de paiement a expiré",
+  "error_payment_not_payable": "Ce paiement ne peut plus être réglé",
+  "error_invalid_password": "Mot de passe incorrect",
+
+  "pay": "Payer",
+  "next": "Suivant",
+  "pay_enter_code_title": "Saisissez le code de paiement",
+  "pay_code_hint": "Code de paiement",
+  "pay_code_required": "Veuillez saisir le code de paiement",
+  "pay_amount_to_pay": "Montant à payer",
+  "pay_merchant": "Marchand",
+  "pay_code_label": "Code",
+  "pay_enter_password": "Saisissez votre mot de passe pour confirmer",
+  "pay_confirm": "Payer maintenant",
+  "pay_success": "Paiement réussi",
+  "pay_done": "Terminé"
 }
