@@ -4,3 +4,8 @@ part of 'main_bloc.dart';
 sealed class MainEvent {}
 
 class GetBalanceEvent extends MainEvent {}
+
+class DepositRequested extends MainEvent {
+  final double amount;
+  DepositRequested(this.amount);
+}

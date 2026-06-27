@@ -56,5 +56,11 @@
   "pay_enter_password": "أدخل كلمة المرور للتأكيد",
   "pay_confirm": "ادفع الآن",
   "pay_success": "تم الدفع بنجاح",
-  "pay_done": "تم"
+  "pay_done": "تم",
+  "deposit": "إيداع",
+  "deposit_amount_hint": "المبلغ المراد إيداعه",
+  "deposit_button": "إيداع",
+  "deposit_success": "تم الإيداع بنجاح",
+  "amount_error_empty": "المبلغ مطلوب",
+  "amount_error_invalid": "أدخل مبلغاً صحيحاً"
 }

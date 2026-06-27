@@ -303,7 +303,7 @@ class _TransferPageState extends State<RequestPage> {
                             borderRadius: BorderRadius.circular(10),
                           ),
                           child: const Icon(
-                            Icons.attach_money,
+                            Icons.account_balance_wallet_outlined,
                             color: AppColors.accentOrange,
                             size: 20,
                           ),

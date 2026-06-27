@@ -179,4 +179,22 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get pay_done => 'Terminé';
+
+  @override
+  String get deposit => 'Dépôt';
+
+  @override
+  String get deposit_amount_hint => 'Montant à déposer';
+
+  @override
+  String get deposit_button => 'Déposer';
+
+  @override
+  String get deposit_success => 'Dépôt réussi';
+
+  @override
+  String get amount_error_empty => 'Le montant est requis';
+
+  @override
+  String get amount_error_invalid => 'Saisissez un montant valide';
 }

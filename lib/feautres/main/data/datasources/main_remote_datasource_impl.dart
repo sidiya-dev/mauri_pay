@@ -15,7 +15,26 @@ class MainRemoteDatasourceImpl implements MainRemoteDatasource {
       final balance = (response.data['balance'] as num).toDouble();
       return balance;
     } on DioException catch (e) {
-      throw ServerException(e.message ?? 'Failed to load balance');
+      throw serverExceptionFromDio(e);
+    } catch (e) {
+      throw ServerException(e.toString());
+    }
+  }
+
+  @override
+  Future<double> deposit(double amount) async {
+    try {
+      // Credits the session user's own account; returns the updated balance.
+      final response =
+          await dio.post('/api/v1/dev/topup', data: {'amount': amount});
+      final data = response.data;
+      if (data is Map && data['balance'] != null) {
+        return (data['balance'] as num).toDouble();
+      }
+      // Fallback: re-read the balance if the endpoint didn't echo it.
+      return getBalance('');
+    } on DioException catch (e) {
+      throw serverExceptionFromDio(e);
     } catch (e) {
       throw ServerException(e.toString());
     }

@@ -1,6 +1,7 @@
 import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mauri_pay/core/config/app_config.dart';
 import 'package:mauri_pay/feautres/auth/data/datasources/auth_remote_datasource.dart';
@@ -21,6 +22,7 @@ import 'package:mauri_pay/feautres/main/data/repositories/transaction_repository
 import 'package:mauri_pay/feautres/main/domain/repositories/main_repository.dart';
 import 'package:mauri_pay/feautres/main/domain/repositories/transaction_repository.dart';
 import 'package:mauri_pay/feautres/main/domain/usecases/get_balanace.dart';
+import 'package:mauri_pay/feautres/main/domain/usecases/deposit_usecase.dart';
 import 'package:mauri_pay/feautres/main/domain/usecases/list_transaction.dart';
 import 'package:mauri_pay/feautres/main/domain/usecases/make_transaction.dart';
 import 'package:mauri_pay/feautres/main/presentation/bloc/list_transaction_bloc.dart';
@@ -56,6 +58,17 @@ Future<void> initGlobal() async {
     ),
   )
     ..interceptors.add(CookieManager(cookieJar))
+    // Debug-only: surface the actual request URL + any DioException in the console.
+    ..interceptors.add(InterceptorsWrapper(
+      onError: (e, handler) {
+        if (kDebugMode) {
+          // ignore: avoid_print
+          print('[DIO] ${e.type} on ${e.requestOptions.uri} '
+              'status=${e.response?.statusCode} msg=${e.message}');
+        }
+        handler.next(e);
+      },
+    ))
     // Session expired / not authenticated -> drive the auth state to Unauthenticated.
     // The router redirect (which listens to AuthBloc) then sends the user to login.
     ..interceptors.add(
@@ -122,9 +135,15 @@ Future<void> _initMain() async {
     ..registerLazySingleton<GetBalanaceUsecase>(
       () => GetBalanaceUsecase(mainRepository: sl<MainRepository>()),
     )
+    ..registerLazySingleton<DepositUsecase>(
+      () => DepositUsecase(mainRepository: sl<MainRepository>()),
+    )
     ..registerFactoryParam<MainBloc, String, void>(
-      (userId, _) =>
-          MainBloc(getBalanace: sl<GetBalanaceUsecase>(), userId: userId),
+      (userId, _) => MainBloc(
+        getBalanace: sl<GetBalanaceUsecase>(),
+        deposit: sl<DepositUsecase>(),
+        userId: userId,
+      ),
     );
 }
 

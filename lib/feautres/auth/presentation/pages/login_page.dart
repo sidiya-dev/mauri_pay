@@ -58,8 +58,17 @@ class _LoginPageState extends State<LoginPage> {
                 padding: const EdgeInsets.all(16.0),
                 child: Column(
                   children: [
-                    Image.asset("assets/images/mauri_pay.png", height: 220),
-                    const SizedBox(height: 30),
+                    Image.asset("assets/images/mauri_pay.png", height: 180),
+                    const SizedBox(height: 8),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        t.sign_in,
+                        style: Theme.of(context).textTheme.headlineSmall
+                            ?.copyWith(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    const SizedBox(height: 24),
 
                     AuthFiled(
                       controller: phoneController,

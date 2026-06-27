@@ -56,5 +56,11 @@
   "pay_enter_password": "Saisissez votre mot de passe pour confirmer",
   "pay_confirm": "Payer maintenant",
   "pay_success": "Paiement réussi",
-  "pay_done": "Terminé"
+  "pay_done": "Terminé",
+  "deposit": "Dépôt",
+  "deposit_amount_hint": "Montant à déposer",
+  "deposit_button": "Déposer",
+  "deposit_success": "Dépôt réussi",
+  "amount_error_empty": "Le montant est requis",
+  "amount_error_invalid": "Saisissez un montant valide"
 }

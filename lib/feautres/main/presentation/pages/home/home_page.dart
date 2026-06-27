@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:mauri_pay/feautres/main/presentation/bloc/main_bloc.dart';
 import 'package:mauri_pay/feautres/main/presentation/pages/home/widgets/option_card_widget.dart';
 import 'package:mauri_pay/feautres/main/presentation/pages/home/widgets/solde_widget.dart';
 import 'package:mauri_pay/l10n/app_localizations.dart';
@@ -30,6 +32,17 @@ class _HomePageState extends State<HomePage> {
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             children: [
+              OptionCardWidget(
+                icon: Icons.add_card_rounded,
+                text: t.deposit,
+                onTap: () async {
+                  await context.push("/deposit");
+                  // Refresh the balance shown on home after returning.
+                  if (context.mounted) {
+                    context.read<MainBloc>().add(GetBalanceEvent());
+                  }
+                },
+              ),
               OptionCardWidget(
                 icon: Icons.repeat_rounded,
                 text: t.transfer,

@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:mauri_pay/core/error/error_messages.dart';
 import 'package:mauri_pay/core/theme/app_colors.dart';
 import 'package:mauri_pay/core/utils/show_snackbar.dart';
+import 'package:mauri_pay/core/utils/text_utils.dart';
 import 'package:mauri_pay/feautres/auth/domain/usecases/register_usecase.dart';
 import 'package:mauri_pay/feautres/auth/presentation/bloc/auth_bloc.dart';
 import 'package:mauri_pay/feautres/auth/presentation/widgets/auth_botton.dart';
@@ -61,14 +62,23 @@ class _RegisterPageState extends State<RegisterPage> {
                 padding: const EdgeInsets.all(16.0),
                 child: Column(
                   children: [
-                    Image.asset("assets/images/mauri_pay.png", height: 220),
-                    SizedBox(height: 30),
+                    Image.asset("assets/images/mauri_pay.png", height: 160),
+                    const SizedBox(height: 8),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        t.sign_up,
+                        style: Theme.of(context).textTheme.headlineSmall
+                            ?.copyWith(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    const SizedBox(height: 24),
                     AuthFiled(
                       controller: firstNameController,
                       hintText: "First name",
                       prefixIcon: Icon(Icons.person),
-                      isObscure: false,
                       textInputType: TextInputType.name,
+                      textCapitalization: TextCapitalization.words,
                       validator: (value) {
                         if (value == null || value.trim().isEmpty) {
                           return "First name is required";
@@ -81,8 +91,8 @@ class _RegisterPageState extends State<RegisterPage> {
                       controller: lastNameController,
                       hintText: "Last name",
                       prefixIcon: Icon(Icons.person_outline),
-                      isObscure: false,
                       textInputType: TextInputType.name,
+                      textCapitalization: TextCapitalization.words,
                       validator: (value) {
                         if (value == null || value.trim().isEmpty) {
                           return "Last name is required";
@@ -115,6 +125,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       hintText: t.password_placeholder,
                       prefixIcon: Icon(Icons.lock),
                       maxLength: 6,
+                      isObscure: true,
                       textInputType: TextInputType.number,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -158,8 +169,12 @@ class _RegisterPageState extends State<RegisterPage> {
                           context.read<AuthBloc>()..add(
                             RegisterEvent(
                               params: RegisterParams(
-                                firstName: firstNameController.text.trim(),
-                                lastName: lastNameController.text.trim(),
+                                firstName: capitalizeWords(
+                                  firstNameController.text,
+                                ),
+                                lastName: capitalizeWords(
+                                  lastNameController.text,
+                                ),
                                 phone: phoneController.text,
                                 password: passwordController.text,
                               ),

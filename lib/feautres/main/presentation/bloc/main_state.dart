@@ -15,3 +15,14 @@ final class MainError extends MainState {
   MainError({required this.message});
 }
 final class MainLoading extends MainState {}
+
+final class DepositSuccess extends MainState {
+  final double balance;
+  DepositSuccess({required this.balance});
+}
+
+final class DepositFailure extends MainState {
+  final String message;
+  final String? code;
+  DepositFailure({required this.message, this.code});
+}

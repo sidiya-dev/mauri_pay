@@ -61,5 +61,11 @@
   "pay_enter_password": "Enter your password to confirm",
   "pay_confirm": "Pay now",
   "pay_success": "Payment successful",
-  "pay_done": "Done"
+  "pay_done": "Done",
+  "deposit": "Deposit",
+  "deposit_amount_hint": "Amount to deposit",
+  "deposit_button": "Deposit",
+  "deposit_success": "Deposit successful",
+  "amount_error_empty": "Amount is required",
+  "amount_error_invalid": "Enter a valid amount"
 }

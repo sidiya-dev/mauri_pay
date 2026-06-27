@@ -171,4 +171,22 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get pay_done => 'Done';
+
+  @override
+  String get deposit => 'Deposit';
+
+  @override
+  String get deposit_amount_hint => 'Amount to deposit';
+
+  @override
+  String get deposit_button => 'Deposit';
+
+  @override
+  String get deposit_success => 'Deposit successful';
+
+  @override
+  String get amount_error_empty => 'Amount is required';
+
+  @override
+  String get amount_error_invalid => 'Enter a valid amount';
 }

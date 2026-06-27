@@ -423,6 +423,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Done'**
   String get pay_done;
+
+  /// No description provided for @deposit.
+  ///
+  /// In en, this message translates to:
+  /// **'Deposit'**
+  String get deposit;
+
+  /// No description provided for @deposit_amount_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Amount to deposit'**
+  String get deposit_amount_hint;
+
+  /// No description provided for @deposit_button.
+  ///
+  /// In en, this message translates to:
+  /// **'Deposit'**
+  String get deposit_button;
+
+  /// No description provided for @deposit_success.
+  ///
+  /// In en, this message translates to:
+  /// **'Deposit successful'**
+  String get deposit_success;
+
+  /// No description provided for @amount_error_empty.
+  ///
+  /// In en, this message translates to:
+  /// **'Amount is required'**
+  String get amount_error_empty;
+
+  /// No description provided for @amount_error_invalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a valid amount'**
+  String get amount_error_invalid;
 }
 
 class _AppLocalizationsDelegate

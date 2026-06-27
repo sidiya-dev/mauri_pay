@@ -171,4 +171,22 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get pay_done => 'تم';
+
+  @override
+  String get deposit => 'إيداع';
+
+  @override
+  String get deposit_amount_hint => 'المبلغ المراد إيداعه';
+
+  @override
+  String get deposit_button => 'إيداع';
+
+  @override
+  String get deposit_success => 'تم الإيداع بنجاح';
+
+  @override
+  String get amount_error_empty => 'المبلغ مطلوب';
+
+  @override
+  String get amount_error_invalid => 'أدخل مبلغاً صحيحاً';
 }

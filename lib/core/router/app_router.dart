@@ -8,6 +8,7 @@ import 'package:mauri_pay/feautres/auth/presentation/pages/register_page.dart';
 import 'package:mauri_pay/feautres/auth/presentation/pages/splash_page.dart';
 import 'package:mauri_pay/feautres/main/presentation/pages/request/request_page.dart';
 import 'package:mauri_pay/feautres/main/presentation/pages/transfer/pages/transfer_page.dart';
+import 'package:mauri_pay/feautres/main/presentation/pages/deposit/deposit_page.dart';
 import 'package:mauri_pay/feautres/main/presentation/widget_tree.dart';
 import 'package:mauri_pay/feautres/payment/presentation/pages/pay_page.dart';
 import 'package:mauri_pay/init_dependencies.dart';
@@ -47,6 +48,7 @@ GoRouter buildRouter(AuthBloc authBloc) {
       GoRoute(path: "/", builder: (_, __) => WidgetTree()),
       GoRoute(path: "/transfer", builder: (_, __) => TransferPage()),
       GoRoute(path: "/request", builder: (_, __) => RequestPage()),
+      GoRoute(path: "/deposit", builder: (_, __) => const DepositPage()),
       GoRoute(path: "/pay", builder: (_, __) => const PayPage()),
     ],
   );
