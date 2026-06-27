@@ -44,14 +44,5 @@ class TransactionDatasourceImpl implements TransactionDatasource {
     }
   }
 
-  ServerException _toException(DioException e) {
-    final data = e.response?.data;
-    if (data is Map) {
-      final code = data['code']?.toString();
-      final m = data['message'];
-      final message = m is Map ? m.values.join(', ') : (m?.toString() ?? 'Error');
-      return ServerException(message, code);
-    }
-    return ServerException(e.message ?? 'Network error', 'NETWORK');
-  }
+  ServerException _toException(DioException e) => serverExceptionFromDio(e);
 }
