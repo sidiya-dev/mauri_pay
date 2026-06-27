@@ -1,8 +1,8 @@
 import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get_it/get_it.dart';
+import 'package:mauri_pay/core/config/app_config.dart';
 import 'package:mauri_pay/feautres/auth/data/datasources/auth_remote_datasource.dart';
 import 'package:mauri_pay/feautres/auth/data/datasources/auth_remote_datasource_impl.dart';
 import 'package:mauri_pay/feautres/auth/data/repositories/auth_repository_impl.dart';
@@ -50,7 +50,7 @@ Future<void> initGlobal() async {
   final cookieJar = CookieJar();
   final dio = Dio(
     BaseOptions(
-      baseUrl: dotenv.get("API_URL"),
+      baseUrl: AppConfig.apiUrl,
       headers: {'Content-Type': 'application/json'},
       responseType: ResponseType.json,
     ),
